@@ -78,13 +78,30 @@
       </div>
     </div>
   </section>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Najdi všechny burger ikonky
+      const burgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+    
+      // Přidej jim klikací funkci
+      if (burgers.length > 0) {
+        burgers.forEach(el => {
+          el.addEventListener('click', () => {
+            const target = el.dataset.target;
+            const $target = document.getElementById(target);
+    
+            el.classList.toggle('is-active');
+            $target.classList.toggle('is-active');
+          });
+        });
+      }
+    });
+  </script>
 </body>
 <!-- Patička (zápatí) stránky -->
 <footer class="footer has-background-black">
     <div class="content has-text-centered has-text-white">
       <p> Vytvořila Magdaléna Loskotová. Pokud není uvedeno jinak, je obsah stránek dostupný pod licencí <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY NC SA 4.0</a>. Tato stránka je stylována pomocí knihovny <a href="http://bulma.io">Bulma</a>.</p>
     </div>
-  </footer>
-
-</body>
+</footer>
 </html>
