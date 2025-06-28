@@ -47,32 +47,30 @@
           <p>Na této stránce najdete podklady pro výuku matematiky, deskriptivní geometrie a elektrotechniky. Vyberte si příslušný předmět a váš odpovídající stupeň vzdělávání, najdete zde veškeré potřebné podklady pro výuku, na které vás odkážu v rámci vyučování.</p>
           <p>Jestli zde mnou doporučené podklady nejsou, prosím, buďte trpěliví. Pravděpodobně se v příslušné sekci do 2 dnů objeví.</p>
       </div>
-    </div>
-  </section>
-
-  <!-- Vlastní obsah stránky -->
-  <div class="container is-max-desktop p-4 content">
-    <div class="box">
-      <h3 class="title is-4">Učební prezentace</h3>
-      <p>
-        Po zadání kódu prezentace (jejich seznam najdete na stránkách <a href="seznam_odkazu_mt" aria-current="page">Matematika</a>, <a href="seznam_odkazu_deg" aria-current="page">Deskriptivní geometrie</a> a <a href="ostatni.html" aria-current="page">Ostatní</a>) by se daná prezentace měla načíst a otevřít.
-      </p>
-      <div class="columns">
-        <div class="column">
-          <input id="input" class="input" type="text" placeholder="Kód prezentace"
-          onkeydown="if(event.keyCode == 13) {read_and_goto();}">
-        </div>
-        <div class="column is-one-fifth">
-          <button class="button is-fullwidth is-link" onclick="read_and_goto()">Přejít na</button>
-          <script>
-            function read_and_goto() {
-        			window.location.href = 'slides.html?file=' + document.getElementById('input').value;
-            }
-      		</script>
+      <div class="container is-max-desktop p-4 content">
+        <div class="box">
+          <h3 class="title is-4">Učební prezentace</h3>
+          <p>
+            Po zadání kódu prezentace (jejich seznam najdete na stránkách <a href="seznam_odkazu_mt" aria-current="page">Matematika</a>, <a href="seznam_odkazu_deg" aria-current="page">Deskriptivní geometrie</a> a <a href="ostatni.html" aria-current="page">Ostatní</a>) by se daná prezentace měla načíst a otevřít.
+          </p>
+          <div class="columns">
+            <div class="column">
+              <input id="input" class="input" type="text" placeholder="Kód prezentace"
+              onkeydown="if(event.keyCode == 13) {read_and_goto();}">
+            </div>
+            <div class="column is-one-fifth">
+              <button class="button is-fullwidth is-link" onclick="read_and_goto()">Přejít na</button>
+              <script>
+                function read_and_goto() {
+            			window.location.href = 'slides.html?file=' + document.getElementById('input').value;
+                }
+          		</script>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+  </section>
 </body>
 <!-- Patička (zápatí) stránky -->
 <footer class="footer has-background-black">
