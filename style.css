@@ -15,6 +15,13 @@ body {
 }
 
 nav {
+  height: 100%;
+  width: 200px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  overflow-x: hidden;
   background: #222;
   color: #fff;
   padding: 0.5rem 0;
@@ -33,6 +40,7 @@ nav a {
   padding: 0.5rem 1rem;
   border-radius: 4px;
   transition: background 0.2s;
+  display: block;
 }
 
 nav a.active, nav a:hover {
@@ -71,4 +79,9 @@ footer {
   background: #eee;
   font-size: 0.95rem;
   color: #777;
+}
+
+.content {
+  margin-left: 200px;
+  padding-left: 20px;
 }
