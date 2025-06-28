@@ -7,10 +7,8 @@
 
     <!-- CSS knihovna Bulma (pro pěkný celkový vzhled stránky) -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css">
-
     <!-- Knihovna Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
     <!-- JS knihovna MathJax (pro práci se vzorci) -->
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -19,18 +17,14 @@
   <body>
     <!-- Hlavička (záhlaví) stránky -->
     <nav class="navbar is-info is-fixed-top" role="navigation" aria-label="main navigation">
-      <!-- Rozbalovací menu (pro mobilní zařízení) -->
       <div class="navbar-brand">
         <span class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasic">
-          <span></span>
-          <span></span>
-          <span></span>
+          <span></span><span></span><span></span>
         </span>
       </div>
-
       <div id="navbarBasic" class="navbar-menu">
         <div class="navbar-start">
-          <a class="navbar-item" href="index.html" aria-current="page">Hlavní strana</a>
+          <a class="navbar-item" href="index.html">Hlavní strana</a>
           <a class="navbar-item" href="matematika.html">Matematika</a>
           <a class="navbar-item" href="deskriptiva.html">Deskriptivní geometrie</a>
           <a class="navbar-item" href="ostatni.html">Ostatní</a>
@@ -38,24 +32,24 @@
       </div>
     </nav>
 
-    <!-- Vlastní obsah stránky -->
+    <!-- Úvodní blok -->
     <section class="hero is-info is-medium">
       <div class="hero-body">
         <div class="container">
           <h1 class="title is-1">(nejen) matematika</h1>
           <h2 class="subtitle is-3">Stránka plná učebních materiálů</h2>
-          <p style="margin-bottom: 20px;">
+          <p>
             Na této stránce najdete podklady pro výuku matematiky, deskriptivní geometrie a ostatních předmětů.
             Podklady jsou vytvářeny primárně ve formě prezentací, ale jsou zde i odkazy na materiály ve formátu PDF.
+          </p>
           <p>
-            Jestli zde mnou doporučené podklady nejsou, prosím, buďte trpěliví.
-            Pravděpodobně se v příslušné sekci do 2 dnů objeví.
+            Jestli zde mnou doporučené podklady nejsou, prosím, buďte trpěliví. Pravděpodobně se v příslušné sekci do 2 dnů objeví.
           </p>
         </div>
       </div>
     </section>
 
-    <!-- Sekce pro zadání kódu prezentace -->
+    <!-- Vyhledávání prezentace podle kódu -->
     <section class="hero">
       <div class="hero-body">
         <div class="container is-max-desktop p-4 content">
@@ -69,13 +63,7 @@
             </p>
             <div class="columns">
               <div class="column">
-                <input
-                  id="input"
-                  class="input"
-                  type="text"
-                  placeholder="Kód prezentace"
-                  onkeydown="if(event.key === 'Enter') readAndGoto();"
-                />
+                <input id="input" class="input" type="text" placeholder="Kód prezentace" onkeydown="if(event.key === 'Enter') readAndGoto();" />
               </div>
               <div class="column is-one-fifth">
                 <button class="button is-fullwidth is-link" onclick="readAndGoto()">Přejít na</button>
@@ -83,7 +71,7 @@
             </div>
           </div>
 
-          <!-- Pole s datem poslední aktualizace a obsahem aktualizací -->
+          <!-- Novinky a aktualizace -->
           <article class="message is-warning">
             <div class="message-header">
               <p>Datum poslední aktualizace učebních materiálů a novinky</p>
@@ -100,29 +88,27 @@
       </div>
     </section>
 
+    <!-- Dynamické panely pro předměty -->
     <section id="dynamic-subjects" class="hero">
       <div class="hero-body">
         <div class="container is-max-desktop p-4 content">
           <h3 class="title is-4">Přehled dostupných předmětů (dynamický)</h3>
-    
-          <!-- Panel Matematika -->
+
+          <!-- Panely pro jednotlivé předměty -->
           <nav class="panel is-info mb-5" id="math-panel">
             <p class="panel-heading">Matematika</p>
             <div class="panel-block">
               <input id="math-search" class="input" type="text" placeholder="Vyhledat…">
             </div>
-            <!-- Dynamické položky -->
           </nav>
-    
-          <!-- Panel Deskriptivní geometrie -->
+
           <nav class="panel is-info mb-5" id="deg-panel">
             <p class="panel-heading">Deskriptivní geometrie</p>
             <div class="panel-block">
               <input id="deg-search" class="input" type="text" placeholder="Vyhledat…">
             </div>
           </nav>
-    
-          <!-- Panel Ostatní -->
+
           <nav class="panel is-info mb-5" id="ost-panel">
             <p class="panel-heading">Ostatní</p>
             <div class="panel-block">
@@ -132,7 +118,8 @@
         </div>
       </div>
     </section>
-    
+
+    <!-- Skript pro načítání a vyhledávání prezentací -->
     <script>
       async function fetchSlidesList() {
         try {
@@ -140,26 +127,26 @@
           const htmlText = await response.text();
           const parser = new DOMParser();
           const doc = parser.parseFromString(htmlText, 'text/html');
-    
-          const links = [...doc.querySelectorAll('a')]
-            .map(a => a.getAttribute('href'))
-            .filter(href => href && href.endsWith('.md'));
-    
-          const mathFiles = links.filter(name => name.startsWith('mat'));
-          const degFiles = links.filter(name => name.startsWith('deg'));
-          const ostFiles = links.filter(name => name.startsWith('ost'));
-    
-          function renderPanel(panelId, inputId, files) {
+
+          const links = [...doc.querySelectorAll('a')].map(a => a.getAttribute('href')).filter(href => href && href.endsWith('.md'));
+
+          const filesByPrefix = {
+            'math-panel': { input: 'math-search', files: links.filter(name => name.startsWith('mat')) },
+            'deg-panel':  { input: 'deg-search',  files: links.filter(name => name.startsWith('deg')) },
+            'ost-panel':  { input: 'ost-search',  files: links.filter(name => name.startsWith('ost')) },
+          };
+
+          for (const [panelId, { input, files }] of Object.entries(filesByPrefix)) {
             const panel = document.getElementById(panelId);
-    
+
             if (files.length === 0) {
               const empty = document.createElement('div');
               empty.className = 'panel-block';
               empty.textContent = 'Žádné dostupné soubory';
               panel.appendChild(empty);
-              return;
+              continue;
             }
-    
+
             files.forEach(file => {
               const name = file.replace('.md', '');
               const block = document.createElement('a');
@@ -169,32 +156,23 @@
               block.setAttribute('data-name', name.toLowerCase());
               panel.appendChild(block);
             });
-    
-            // Vyhledávání uvnitř panelu
-            const input = document.getElementById(inputId);
-            input.addEventListener('input', () => {
-              const term = input.value.toLowerCase();
-              const items = panel.querySelectorAll('.slide-item');
-              items.forEach(item => {
+
+            document.getElementById(input).addEventListener('input', e => {
+              const term = e.target.value.toLowerCase();
+              panel.querySelectorAll('.slide-item').forEach(item => {
                 const name = item.getAttribute('data-name');
                 item.style.display = name.includes(term) ? 'block' : 'none';
               });
             });
           }
-    
-          renderPanel('math-panel', 'math-search', mathFiles);
-          renderPanel('deg-panel', 'deg-search', degFiles);
-          renderPanel('ost-panel', 'ost-search', ostFiles);
         } catch (error) {
           console.error('Chyba při načítání seznamu:', error);
         }
       }
-    
       document.addEventListener('DOMContentLoaded', fetchSlidesList);
     </script>
 
-
-    <!-- Funkce pro přesměrování na prezentaci a rozbalování burger menu -->
+    <!-- Ovládání burger menu a přesměrování -->
     <script>
       function readAndGoto() {
         const code = document.getElementById('input').value.trim();
@@ -202,8 +180,7 @@
       }
 
       document.addEventListener('DOMContentLoaded', () => {
-        const burgers = document.querySelectorAll('.navbar-burger');
-        burgers.forEach(burger => {
+        document.querySelectorAll('.navbar-burger').forEach(burger => {
           burger.addEventListener('click', () => {
             const target = document.getElementById(burger.dataset.target);
             burger.classList.toggle('is-active');
@@ -214,7 +191,7 @@
     </script>
   </body>
 
-  <!-- Patička (zápatí) stránky -->
+  <!-- Patička stránky -->
   <footer class="footer has-background-black">
     <div class="content has-text-centered has-text-white">
       <p>
