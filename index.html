@@ -2,27 +2,78 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>My Personal Site</title>
+  <title>(nejen) matematika</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
+  <!-- CSS knihovna Bulma (pro pěkný celkový vzhled stránky) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css">
+  <!-- JS knihovna MathJax (pro práci se vzorci) -->
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <!-- JS (ale vlastně i CSS) knihovna highlight.js (pro pěkný kód) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.0.1/styles/base16/bright.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.0.1/highlight.min.js"></script>
 </head>
-<body>
-  <nav>
-    <ul>
-      <li><a href="index.html" class="active">Home</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="projects.html">Projects</a></li>
-      <li><a href="contact.html">Contact</a></li>
-    </ul>
-  </nav>
-  <main>
-    <section class="center">
-      <h1>Your Name</h1>
-      <p>Welcome to my personal website! I'm a [your profession or tagline].</p>
-    </section>
-  </main>
-  <footer>
-    &copy; 2025 Your Name. All rights reserved.
+<!-- Hlavička (záhlaví) stránky -->
+  <section class="hero is-small has-background-black has-text-centered">
+    <div class="hero-body">
+      <p class="title has-text-light"> (nejen) matematika </p>
+    </div>
+  </section>
+  <section class="hero is-small has-background-white has-text-centered box p-0 is-radiusless mb-3">
+    <div class="hero-body">
+        <nav class="breadcrumb has-bullet-separator is-centered" aria-label="breadcrumbs">
+          <ul>
+            <li class="is-active"><a href="#" aria-current="page">Hlavní strana</a></li>
+            <li ><a href="seznam_odkazu_mt" aria-current="page">Matematika</a></li>
+            <li ><a href="seznam_odkazu_deg" aria-current="page">Deskriptivní geometrie</a></li>
+          </ul>
+        </nav>
+    </div>
+  </section>
+
+  <!-- Vlastní obsah stránky -->
+  <div class="container is-max-desktop p-4 content">
+    <div class="box">
+      <h3 class="title is-4">Stránka plná učebních materiálů</h3>
+
+      <p>Na této stránce najdete podklady pro výuku matematiky, deskriptivní geometrie a elektrotechniky. Vyberte si příslušný předmět a váš odpovídající stupeň vzdělávání, najdete zde veškeré potřebné podklady pro výuku, na které vás odkážu v rámci vyučování.
+        Jestli zde mnou doporučené podklady nejsou, prosím, buďte trpěliví. Pravděpodobně se v příslušné sekci do 2 dnů objeví.
+      
+      <p>Tato stránka je stylována pomocí CSS knihovny <a href="http://bulma.io">Bulma</a>.
+    </div>
+
+    <div class="box">
+      <h3 class="title is-4">Učební prezentace</h3>
+      <p>
+        Po zadání kódu prezentace (jejich seznam najdete na stránkách <a href="seznam_odkazu_mt" aria-current="page">Matematika</a> a <a href="seznam_odkazu_deg" aria-current="page">Deskriptivní geometrie</a>) by se daná prezentace měla načíst a otevřít.
+      </p>
+      <div class="columns">
+        <div class="column">
+          <input id="input" class="input" type="text" placeholder="Kód prezentace"
+          onkeydown="if(event.keyCode == 13) {read_and_goto();}">
+        </div>
+        <div class="column is-one-fifth">
+          <button class="button is-fullwidth is-link" onclick="read_and_goto()">Přejít na</button>
+          <script>
+            function read_and_goto() {
+        			window.location.href = 'slides.html?file=' + document.getElementById('input').value;
+            }
+      		</script>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+</div>
+<!-- Patička (zápatí) stránky -->
+<footer class="footer has-background-black">
+    <div class="content has-text-centered has-text-white">
+      <p>
+        Vytvořila Magdaléna Loskotová. Pokud není uvedeno jinak, je obsah stránek dostupný pod licencí <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY NC SA 4.0</a>.
+    </div>
   </footer>
+
 </body>
 </html>
