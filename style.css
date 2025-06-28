@@ -8,13 +8,13 @@
 body {
   font-family: 'Segoe UI', Arial, sans-serif;
   background: #f5f5f7;
-  color: #222;
+  color: black;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
 }
 
-nav {
+.sidenav {
   height: 100%;
   width: 200px;
   position: fixed;
@@ -22,20 +22,12 @@ nav {
   top: 0;
   left: 0;
   overflow-x: hidden;
-  background: #222;
-  color: #fff;
-  padding: 0.5rem 0;
+  background: black;
+  color: white;
 }
 
-nav ul {
-  display: flex;
-  gap: 2rem;
-  justify-content: center;
-  list-style: none;
-}
-
-nav a {
-  color: #fff;
+.sidenav a {
+  color: white;
   text-decoration: none;
   padding: 0.5rem 1rem;
   border-radius: 4px;
@@ -43,7 +35,7 @@ nav a {
   display: block;
 }
 
-nav a.active, nav a:hover {
+.sidenav a.active, nav a:hover {
   background: #0057b8;
 }
 
@@ -59,29 +51,10 @@ main {
   margin-top: 3rem;
 }
 
-.projects-list {
-  margin-top: 1rem;
-  list-style: none;
-  padding-left: 0;
-}
-
-.projects-list li {
-  margin-bottom: 1.2rem;
-  padding: 0.8rem;
-  background: #fff;
-  border-radius: 6px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.03);
-}
-
 footer {
   text-align: center;
   padding: 1rem 0;
   background: #eee;
   font-size: 0.95rem;
   color: #777;
-}
-
-.content {
-  margin-left: 200px;
-  padding-left: 20px;
 }
