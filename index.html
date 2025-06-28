@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" />
     <title>(nejen) matematika</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <!-- CSS knihovna Bulma (pro pěkný celkový vzhled stránky) -->
-    <link rel="stylesheet" href="https://jenil.github.io/bulmaswatch/pulse/bulmaswatch.min.css">
+    <link rel="stylesheet" href="https://jenil.github.io/bulmaswatch/pulse/bulmaswatch.min.css" />
+
     <!-- JS knihovna MathJax (pro práci se vzorci) -->
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -14,26 +16,21 @@
   <body>
     <!-- Hlavička (záhlaví) stránky -->
     <nav class="navbar" role="navigation" aria-label="main navigation">
-      <!-- Rozbalovací menu (po mobilní a jiné zařízení -->
+      <!-- Rozbalovací menu (pro mobilní zařízení) -->
       <div class="navbar-brand">
-         <span class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasic">
-          <span></span>
+        <span class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasic">
           <span></span>
           <span></span>
           <span></span>
         </span>
       </div>
-          
+
       <div id="navbarBasic" class="navbar-menu">
         <div class="navbar-start">
-          <a class="navbar-item" href="index.html" aria-current="page">
-            Hlavní strana</a></li>
-          <a class="navbar-item" href="matematika.html">
-            Matematika</a>
-          <a class="navbar-item" href="deskriptiva.html">
-            Deskriptivní geometrie</a></li>
-          <a class="navbar-item" href="ostatni.html">
-            Ostatní</a></li>
+          <a class="navbar-item" href="index.html" aria-current="page">Hlavní strana</a>
+          <a class="navbar-item" href="matematika.html">Matematika</a>
+          <a class="navbar-item" href="deskriptiva.html">Deskriptivní geometrie</a>
+          <a class="navbar-item" href="ostatni.html">Ostatní</a>
         </div>
       </div>
     </nav>
@@ -42,68 +39,80 @@
     <section class="hero">
       <div class="hero-body">
         <div class="container">
-          <h1 class="title is-1">
-            (nejen) matematika
-          </h1>
-          <h2 class="subtitle is-3">
-            Stránka plná učebních materiálů
-          </h2>
-            <p>Na této stránce najdete podklady pro výuku matematiky, deskriptivní geometrie a elektrotechniky. Vyberte si příslušný předmět a váš odpovídající stupeň vzdělávání, najdete zde veškeré potřebné podklady pro výuku, na které vás odkážu v rámci vyučování.</p>
-            <p>Jestli zde mnou doporučené podklady nejsou, prosím, buďte trpěliví. Pravděpodobně se v příslušné sekci do 2 dnů objeví.</p>
+          <h1 class="title is-1">(nejen) matematika</h1>
+          <h2 class="subtitle is-3">Stránka plná učebních materiálů</h2>
+          <p>
+            Na této stránce najdete podklady pro výuku matematiky, deskriptivní geometrie a elektrotechniky.
+            Vyberte si příslušný předmět a váš odpovídající stupeň vzdělávání, najdete zde veškeré potřebné
+            podklady pro výuku, na které vás odkážu v rámci vyučování.
+          </p>
+          <p>
+            Jestli zde mnou doporučené podklady nejsou, prosím, buďte trpěliví.
+            Pravděpodobně se v příslušné sekci do 2 dnů objeví.
+          </p>
         </div>
       </div>
     </section>
 
+    <!-- Sekce pro zadání kódu prezentace -->
     <section class="hero is-small">
       <div class="hero-body">
         <div class="container is-max-desktop p-4 content">
           <div class="box">
             <h3 class="title is-4">Učební prezentace</h3>
             <p>
-              Po zadání kódu prezentace (jejich seznam najdete na stránkách <a href="seznam_odkazu_mt" aria-current="page">Matematika</a>, <a href="seznam_odkazu_deg" aria-current="page">Deskriptivní geometrie</a> a <a href="ostatni.html" aria-current="page">Ostatní</a>) by se daná prezentace měla načíst a otevřít.
+              Po zadání kódu prezentace (jejich seznam najdete na stránkách
+              <a href="seznam_odkazu_mt">Matematika</a>,
+              <a href="seznam_odkazu_deg">Deskriptivní geometrie</a> a
+              <a href="ostatni.html">Ostatní</a>) by se daná prezentace měla načíst a otevřít.
             </p>
             <div class="columns">
               <div class="column">
-                <input id="input" class="input" type="text" placeholder="Kód prezentace"
-                onkeydown="if(event.keyCode == 13) {read_and_goto();}">
+                <input
+                  id="input"
+                  class="input"
+                  type="text"
+                  placeholder="Kód prezentace"
+                  onkeydown="if(event.key === 'Enter') readAndGoto();"
+                />
               </div>
               <div class="column is-one-fifth">
-                <button class="button is-fullwidth is-link" onclick="read_and_goto()">Přejít na</button>
-                <script>
-                  function read_and_goto() {
-              			window.location.href = 'slides.html?file=' + document.getElementById('input').value;
-                  }
-            		</script>
+                <button class="button is-fullwidth is-link" onclick="readAndGoto()">Přejít na</button>
               </div>
             </div>
           </div>
         </div>
       </div>
     </section>
-  
-    <!-- Kód k tomu, aby fungoval navbar -->
+
+    <!-- Funkce pro přesměrování na prezentaci a rozbalování burger menu -->
     <script>
+      function readAndGoto() {
+        const code = document.getElementById('input').value.trim();
+        if (code) window.location.href = 'slides.html?file=' + code;
+      }
+
       document.addEventListener('DOMContentLoaded', () => {
-        const burgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
-        if (burgers.length > 0) {
-          burgers.forEach(el => {
-            el.addEventListener('click', () => {
-              const target = el.dataset.target;
-              const $target = document.getElementById(target);
-      
-              el.classList.toggle('is-active');
-              $target.classList.toggle('is-active');
-            });
+        const burgers = document.querySelectorAll('.navbar-burger');
+        burgers.forEach(burger => {
+          burger.addEventListener('click', () => {
+            const target = document.getElementById(burger.dataset.target);
+            burger.classList.toggle('is-active');
+            target.classList.toggle('is-active');
           });
-        }
+        });
       });
     </script>
   </body>
 
   <!-- Patička (zápatí) stránky -->
   <footer class="footer has-background-black">
-      <div class="content has-text-centered has-text-white">
-        <p> Vytvořila Magdaléna Loskotová. Pokud není uvedeno jinak, je obsah stránek dostupný pod licencí <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY NC SA 4.0</a>. Tato stránka je stylována pomocí knihovny <a href="http://bulma.io">Bulma</a>.</p>
-      </div>
+    <div class="content has-text-centered has-text-white">
+      <p>
+        Vytvořila Magdaléna Loskotová. Pokud není uvedeno jinak, je obsah stránek dostupný pod licencí
+        <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY NC SA 4.0</a>.
+        Tato stránka je stylována pomocí knihovny <a href="http://bulma.io">Bulma</a>.
+      </p>
+    </div>
   </footer>
 </html>
