@@ -33,35 +33,12 @@
     </nav>
 
     <!-- Vlastní obsah stránky -->
-    <section class="hero is-small">
-      <div class="hero-body">
-        <div class="container is-max-desktop p-4 content">
-          <!-- Vyhledávání prezentace podle kódu -->
-          <div class="box">
-            <h3 class="title is-4">Učební prezentace</h3>
-            <p>
-              Po zadání kódu prezentace (jejich seznam najdete níže) by se daná prezentace měla načíst a otevřít.
-            </p>
-            <div class="columns">
-              <div class="column">
-                <input id="input" class="input" type="text" placeholder="Kód prezentace" onkeydown="if(event.key === 'Enter') readAndGoto();" />
-              </div>
-              <div class="column is-one-fifth">
-                <button class="button is-fullwidth is-link" onclick="readAndGoto()">Přejít na</button>
-              </div>
-            </div>
-          </div>
-        </div>     
-      </div>
-    </section>
-
-    <!-- Dynamické panely pro předměty -->
     <section id="dynamic-subjects" class="hero is-small">
       <div class="hero-body">
         <div class="container is-max-desktop p-4 content">
           <h3 class="title is-4">Přehled dostupných prezentací</h3>
 
-          <!-- Panely pro jednotlivé předměty -->
+          <!-- Panely pro jednotlivé sekce -->
           <nav class="panel is-info mb-5" id="zs-panel">
             <p class="panel-heading">Základní škola</p>
             <div class="panel-block">
@@ -156,12 +133,7 @@
     </script>
 
     <!-- Ovládání burger menu a přesměrování -->
-    <script>
-      function readAndGoto() {
-        const code = document.getElementById('input').value.trim();
-        if (code) window.location.href = 'slides.html?file=' + code;
-      }
-
+    <script
       document.addEventListener('DOMContentLoaded', () => {
         document.querySelectorAll('.navbar-burger').forEach(burger => {
           burger.addEventListener('click', () => {
