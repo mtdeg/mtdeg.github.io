@@ -100,53 +100,83 @@
       </div>
     </section>
 
-    <section class="hero">
+    <section id="dynamic-subjects" class="hero">
       <div class="hero-body">
         <div class="container is-max-desktop p-4 content">
-          <h3 class="title is-4">Přehled dostupných předmětů</h3>
+          <h3 class="title is-4">Přehled dostupných předmětů (dynamický)</h3>
     
-          <!-- Matematika -->
-          <div class="box has-background-info">
-            <h3 class="title is-5">Matematika</h3>
-            <ul class="ml-4">
-              <li>Podklady k přípravě na přijímací zkoušky na SŠ</li>
-              <li>Přehled důležitých vzorců a pravidel</li>
-              <li>Úlohy k procvičení</li>
-              <li>Podklady k přípravě na maturitu</li>
-              <li>Doporučené učebnice ve formátu PDF</li>
-            </ul>
-            <div class="mt-4 has-text-right">
-              <a href="matematika.html" class="button is-link">Přejít</a>
-            </div>
+          <div id="math-panel" class="box message is-info">
+            <div class="message-header"><p>Matematika</p></div>
+            <div class="message-body"><ul></ul></div>
           </div>
     
-          <!-- Deskriptivní geometrie -->
-          <div class="box has-background-info">
-            <h3 class="title is-5">Deskriptivní geometrie</h3>
-            <ul class="ml-4">
-              <li>Postupy konstrukcí a promítání v PDF materiálech</li>
-              <li>Teorie vysvětlená formou přehledných prezentací</li>
-            </ul>
-            <div class="mt-4 has-text-right">
-              <a href="deskriptiva.html" class="button is-link">Přejít</a>
-            </div>
+          <div id="deg-panel" class="box message is-info">
+            <div class="message-header"><p>Deskriptivní geometrie</p></div>
+            <div class="message-body"><ul></ul></div>
           </div>
     
-          <!-- Ostatní -->
-          <div class="box has-background-info">
-            <h3 class="title is-5">Ostatní</h3>
-            <ul class="ml-4">
-              <li>Učební materiály z elektrotechniky</li>
-              <li>Praktické PDF soubory i prezentace</li>
-            </ul>
-            <div class="mt-4 has-text-right">
-              <a href="ostatni.html" class="button is-link">Přejít</a>
-            </div>
+          <div id="ost-panel" class="box message is-info">
+            <div class="message-header"><p>Ostatní</p></div>
+            <div class="message-body"><ul></ul></div>
           </div>
     
         </div>
       </div>
     </section>
+    
+    <script>
+      async function fetchSlidesList() {
+        try {
+          const response = await fetch('https://mtdeg.github.io/slides-md/');
+          const htmlText = await response.text();
+    
+          // Vytvoření DOM parseru pro načtení HTML indexu
+          const parser = new DOMParser();
+          const doc = parser.parseFromString(htmlText, 'text/html');
+    
+          // Najdeme všechny odkazy na .md soubory
+          const links = [...doc.querySelectorAll('a')]
+            .map(a => a.getAttribute('href'))
+            .filter(href => href && href.endsWith('.md'));
+    
+          // Rozdělíme soubory do kategorií
+          const mathFiles = links.filter(name => name.startsWith('mat'));
+          const degFiles = links.filter(name => name.startsWith('deg'));
+          const ostFiles = links.filter(name => name.startsWith('ost'));
+    
+          // Pomocná funkce pro vykreslení seznamu odkazů
+          function renderList(containerId, files) {
+            const ul = document.querySelector(`#${containerId} .message-body ul`);
+            ul.innerHTML = '';
+            if(files.length === 0) {
+              ul.innerHTML = '<li>Žádné dostupné soubory</li>';
+              return;
+            }
+            files.forEach(file => {
+              const name = file.replace('.md', '');
+              const li = document.createElement('li');
+              const a = document.createElement('a');
+              a.href = `slides.html?file=${name}`;
+              a.textContent = name;
+              li.appendChild(a);
+              ul.appendChild(li);
+            });
+          }
+    
+          renderList('math-panel', mathFiles);
+          renderList('deg-panel', degFiles);
+          renderList('ost-panel', ostFiles);
+    
+        } catch (error) {
+          console.error('Chyba při načítání seznamu:', error);
+          ['math-panel','deg-panel','ost-panel'].forEach(id => {
+            document.querySelector(`#${id} .message-body ul`).innerHTML = '<li>Seznam nelze načíst</li>';
+          });
+        }
+      }
+    
+      fetchSlidesList();
+    </script>
 
     <!-- Funkce pro přesměrování na prezentaci a rozbalování burger menu -->
     <script>
