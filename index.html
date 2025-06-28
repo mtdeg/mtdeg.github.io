@@ -103,23 +103,32 @@
     <section id="dynamic-subjects" class="hero">
       <div class="hero-body">
         <div class="container is-max-desktop p-4 content">
-          <h3 class="title is-4">Přehled dostupných předmětů</h3>
+          <h3 class="title is-4">Přehled dostupných předmětů (dynamický)</h3>
     
-          <div id="math-panel" class="message is-info">
-            <div class="message-header"><p>Matematika</p></div>
-            <div class="message-body"><ul></ul></div>
-          </div>
+          <!-- Panel Matematika -->
+          <nav class="panel is-info mb-5" id="math-panel">
+            <p class="panel-heading">Matematika</p>
+            <div class="panel-block">
+              <input id="math-search" class="input" type="text" placeholder="Vyhledat…">
+            </div>
+            <!-- Dynamické položky -->
+          </nav>
     
-          <div id="deg-panel" class="message is-info">
-            <div class="message-header"><p>Deskriptivní geometrie</p></div>
-            <div class="message-body"><ul></ul></div>
-          </div>
+          <!-- Panel Deskriptivní geometrie -->
+          <nav class="panel is-info mb-5" id="deg-panel">
+            <p class="panel-heading">Deskriptivní geometrie</p>
+            <div class="panel-block">
+              <input id="deg-search" class="input" type="text" placeholder="Vyhledat…">
+            </div>
+          </nav>
     
-          <div id="ost-panel" class="message is-info">
-            <div class="message-header"><p>Ostatní</p></div>
-            <div class="message-body"><ul></ul></div>
-          </div>
-    
+          <!-- Panel Ostatní -->
+          <nav class="panel is-info mb-5" id="ost-panel">
+            <p class="panel-heading">Ostatní</p>
+            <div class="panel-block">
+              <input id="ost-search" class="input" type="text" placeholder="Vyhledat…">
+            </div>
+          </nav>
         </div>
       </div>
     </section>
@@ -129,54 +138,61 @@
         try {
           const response = await fetch('https://mtdeg.github.io/slides-md/');
           const htmlText = await response.text();
-    
-          // Vytvoření DOM parseru pro načtení HTML indexu
           const parser = new DOMParser();
           const doc = parser.parseFromString(htmlText, 'text/html');
     
-          // Najdeme všechny odkazy na .md soubory
           const links = [...doc.querySelectorAll('a')]
             .map(a => a.getAttribute('href'))
             .filter(href => href && href.endsWith('.md'));
     
-          // Rozdělíme soubory do kategorií
           const mathFiles = links.filter(name => name.startsWith('mat'));
           const degFiles = links.filter(name => name.startsWith('deg'));
           const ostFiles = links.filter(name => name.startsWith('ost'));
     
-          // Pomocná funkce pro vykreslení seznamu odkazů
-          function renderList(containerId, files) {
-            const ul = document.querySelector(`#${containerId} .message-body ul`);
-            ul.innerHTML = '';
-            if(files.length === 0) {
-              ul.innerHTML = '<li>Žádné dostupné soubory</li>';
+          function renderPanel(panelId, inputId, files) {
+            const panel = document.getElementById(panelId);
+    
+            if (files.length === 0) {
+              const empty = document.createElement('div');
+              empty.className = 'panel-block';
+              empty.textContent = 'Žádné dostupné soubory';
+              panel.appendChild(empty);
               return;
             }
+    
             files.forEach(file => {
               const name = file.replace('.md', '');
-              const li = document.createElement('li');
-              const a = document.createElement('a');
-              a.href = `slides.html?file=${name}`;
-              a.textContent = name;
-              li.appendChild(a);
-              ul.appendChild(li);
+              const block = document.createElement('a');
+              block.className = 'panel-block slide-item';
+              block.href = `slides.html?file=${name}`;
+              block.textContent = name;
+              block.setAttribute('data-name', name.toLowerCase());
+              panel.appendChild(block);
+            });
+    
+            // Vyhledávání uvnitř panelu
+            const input = document.getElementById(inputId);
+            input.addEventListener('input', () => {
+              const term = input.value.toLowerCase();
+              const items = panel.querySelectorAll('.slide-item');
+              items.forEach(item => {
+                const name = item.getAttribute('data-name');
+                item.style.display = name.includes(term) ? 'block' : 'none';
+              });
             });
           }
     
-          renderList('math-panel', mathFiles);
-          renderList('deg-panel', degFiles);
-          renderList('ost-panel', ostFiles);
-    
+          renderPanel('math-panel', 'math-search', mathFiles);
+          renderPanel('deg-panel', 'deg-search', degFiles);
+          renderPanel('ost-panel', 'ost-search', ostFiles);
         } catch (error) {
           console.error('Chyba při načítání seznamu:', error);
-          ['math-panel','deg-panel','ost-panel'].forEach(id => {
-            document.querySelector(`#${id} .message-body ul`).innerHTML = '<li>Seznam nelze načíst</li>';
-          });
         }
       }
     
-      fetchSlidesList();
+      document.addEventListener('DOMContentLoaded', fetchSlidesList);
     </script>
+
 
     <!-- Funkce pro přesměrování na prezentaci a rozbalování burger menu -->
     <script>
