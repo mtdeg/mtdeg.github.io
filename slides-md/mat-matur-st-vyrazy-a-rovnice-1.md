@@ -16,6 +16,22 @@ $$`
 
 *využijeme vzorce $ \( a+b \) ^2=a^2+2ab+b^2$ .*
 
+--
+
 `$$ 
   x^2+16x+64=x^2+2n\doteq 8n\doteq x+ 8^2=n\(x+8n\) ^2 
 $$`
+
+---
+
+#### 1
+
+**Pro $x\in \mathbb{R} \setminus \{ 0 \}$ proveďte umocnění a upravte.**
+
+`$$
+  \( \frac{3}{x} - \frac{x}{6} \) ^2 =
+$$`
+
+---
+
+# To je vše
