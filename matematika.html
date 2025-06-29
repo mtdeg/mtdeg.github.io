@@ -83,11 +83,11 @@
           const links = [...doc.querySelectorAll('a')].map(a => a.getAttribute('href')).filter(href => href && href.endsWith('.md'));
 
           const filesByPrefix = {
-            'zs-panel': { input: 'math-search', files: links.filter(name => name.startsWith('mat-zs')) },
-            'prij-ss-panel':  { input: 'deg-search',  files: links.filter(name => name.startsWith('mat-prij-ss')) },
-            'ss-panel':  { input: 'ost-search',  files: links.filter(name => name.startsWith('mat-ss')) },
-            'matur-panel':  { input: 'ost-search',  files: links.filter(name => name.startsWith('mat-matur')) },
-            'ost-panel':  { input: 'ost-search',  files: links.filter(name => name.startsWith('mat-ost')) },
+            'zs-panel':      { input: 'zs-search',     files: links.filter(name => name.startsWith('mat-zs')) },
+            'prij-ss-panel': { input: 'prij-ss-search', files: links.filter(name => name.startsWith('mat-prij-ss')) },
+            'ss-panel':      { input: 'ss-search',     files: links.filter(name => name.startsWith('mat-ss')) },
+            'matur-panel':   { input: 'matur-search',  files: links.filter(name => name.startsWith('mat-matur')) },
+            'ost-panel':     { input: 'ost-search',    files: links.filter(name => name.startsWith('mat-ost')) },
           };
 
           for (const [panelId, { input, files }] of Object.entries(filesByPrefix)) {
