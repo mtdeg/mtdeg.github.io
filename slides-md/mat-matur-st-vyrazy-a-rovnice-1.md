@@ -1,4 +1,6 @@
-# Výrazy a rovnice – lomené výrazy, vyjádření veličiny
+# Výrazy a rovnice
+
+### lomené výrazy, vyjádření veličiny
 
 ---
 
