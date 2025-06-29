@@ -52,44 +52,52 @@
             <div class="panel-block">
               <input id="ss-2-search" class="input" type="text" placeholder="Vyhledat…">
             </div>
-          </nav><nav class="panel is-info mb-5" id="ss-3-panel" style="max-height: 320px; overflow-y: auto;">
+          </nav>
+          <nav class="panel is-info mb-5" id="ss-3-panel" style="max-height: 320px; overflow-y: auto;">
             <p class="panel-heading">3. ročník SŠ</p>
             <div class="panel-block">
               <input id="ss-3-search" class="input" type="text" placeholder="Vyhledat…">
             </div>
-          </nav><nav class="panel is-info mb-5" id="ss-4-panel" style="max-height: 320px; overflow-y: auto;">
+          </nav>
+          <nav class="panel is-info mb-5" id="ss-4-panel" style="max-height: 320px; overflow-y: auto;">
             <p class="panel-heading">4. ročník SŠ</p>
             <div class="panel-block">
               <input id="ss-4-search" class="input" type="text" placeholder="Vyhledat…">
             </div>
-          </nav><nav class="panel is-info mb-5" id="matur-st-panel" style="max-height: 320px; overflow-y: auto;">
+          </nav>
+          <nav class="panel is-info mb-5" id="matur-st-panel" style="max-height: 320px; overflow-y: auto;">
             <p class="panel-heading">Příprava na státní maturitu</p>
             <div class="panel-block">
               <input id="matur-st-search" class="input" type="text" placeholder="Vyhledat…">
             </div>
-          </nav><nav class="panel is-info mb-5" id="matur-pl-panel" style="max-height: 320px; overflow-y: auto;">
+          </nav>
+          <nav class="panel is-info mb-5" id="matur-pl-panel" style="max-height: 320px; overflow-y: auto;">
             <p class="panel-heading">Příprava na státní maturitu - matematika +</p>
             <div class="panel-block">
               <input id="matur-pl-search" class="input" type="text" placeholder="Vyhledat…">
             </div>
-          </nav><nav class="panel is-info mb-5" id="matur-sk-panel" style="max-height: 320px; overflow-y: auto;">
+          </nav>
+          <nav class="panel is-info mb-5" id="matur-sk-panel" style="max-height: 320px; overflow-y: auto;">
             <p class="panel-heading">Příprava na školní maturitu</p>
             <div class="panel-block">
               <input id="matur-sk-search" class="input" type="text" placeholder="Vyhledat…">
             </div>
-          </nav><nav class="panel is-info mb-5" id="sem-panel" style="max-height: 320px; overflow-y: auto;">
+          </nav>
+          <nav class="panel is-info mb-5" id="sem-panel" style="max-height: 320px; overflow-y: auto;">
             <p class="panel-heading">Semináře</p>
             <div class="panel-block">
               <input id="sem-search" class="input" type="text" placeholder="Vyhledat…">
             </div>
           </nav>
+        </div>
+      </div>
     </section>
 
     <!-- Skript pro načítání a vyhledávání prezentací -->
     <script>
       async function fetchSlidesList() {
         try {
-          const response = await fetch('https://mtdeg.github.io/slides-md/list.json');
+          const response = await fetch('https://nejen-matematika.github.io/slides-md/list.json');
           const links = await response.json();
     
           const filesByPrefix = {
@@ -97,10 +105,10 @@
             'ss-2-panel':      { input: 'ss-2-search',     files: links.filter(name => name.startsWith('mat-ss-2')) },
             'ss-3-panel':      { input: 'ss-3-search',     files: links.filter(name => name.startsWith('mat-ss-3')) },
             'ss-4-panel':      { input: 'ss-4-search',     files: links.filter(name => name.startsWith('mat-ss-4')) },
-            'matur-st-panel': { input: 'prij-ss-search', files: links.filter(name => name.startsWith('mat-matur-st')) },
-            'matur-pl-panel':      { input: 'ss-search',     files: links.filter(name => name.startsWith('mat-matur-pl')) },
-            'matur-sk-panel':   { input: 'matur-search',  files: links.filter(name => name.startsWith('mat-matur-sk')) },
-            'sem-panel':     { input: 'ost-search',    files: links.filter(name => name.startsWith('mat-sem')) },
+            'matur-st-panel':  { input: 'prij-ss-search',  files: links.filter(name => name.startsWith('mat-matur-st')) },
+            'matur-pl-panel':  { input: 'ss-search',       files: links.filter(name => name.startsWith('mat-matur-pl')) },
+            'matur-sk-panel':  { input: 'matur-search',    files: links.filter(name => name.startsWith('mat-matur-sk')) },
+            'sem-panel':       { input: 'ost-search',      files: links.filter(name => name.startsWith('mat-sem')) },
           };
     
           for (const [panelId, { input, files }] of Object.entries(filesByPrefix)) {
