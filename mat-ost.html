@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+
 <html lang="en" class="has-navbar-fixed-top">
   <head>
     <meta charset="UTF-8" />
@@ -25,9 +25,11 @@
       <div id="navbarBasic" class="navbar-menu">
         <div class="navbar-start">
           <a class="navbar-item" href="index.html">Hlavní strana</a>
-          <a class="navbar-item" href="matematika.html">Matematika</a>
-          <a class="navbar-item" href="deskriptiva.html">Deskriptivní geometrie</a>
-          <a class="navbar-item" href="ostatni.html">Ostatní</a>
+          <a class="navbar-item" href="mat-zs.html">Matematika na základní škole</a>
+          <a class="navbar-item" href="mat-ss.html">Matematika na střední škole</a>
+          <a class="navbar-item" href="mat-ost.html">Ostatní z matematiky</a>
+          <a class="navbar-item" href="mat-uc.html">Učebnice do matematiky</a>
+          <a class="navbar-item" href="ostatni.html">Ostatní předměty</a>
         </div>
       </div>
     </nav>
@@ -36,13 +38,13 @@
     <section id="dynamic-subjects" class="hero is-small">
       <div class="hero-body">
         <div class="container is-max-desktop p-4 content">
-          <h3 class="title is-4">Přehled dostupných prezentací</h3>
+          <h3 class="title is-4">Přehled kódů prezentací</h3>
 
           <!-- Panely pro jednotlivé sekce -->
-          <nav class="panel is-info mb-5" id="ss-panel" style="max-height: 320px; overflow-y: auto;">
-            <p class="panel-heading">Střední škola</p>
+          <nav class="panel is-info mb-5" id="vs-panel" style="max-height: 320px; overflow-y: auto;">
+            <p class="panel-heading">Vysokoškolská matematika</p>
             <div class="panel-block">
-              <input id="ss-search" class="input" type="text" placeholder="Vyhledat…">
+              <input id="vs-search" class="input" type="text" placeholder="Vyhledat…">
             </div>
           </nav>
           <nav class="panel is-info mb-5" id="ost-panel" style="max-height: 320px; overflow-y: auto;">
@@ -51,27 +53,25 @@
               <input id="ost-search" class="input" type="text" placeholder="Vyhledat…">
             </div>
           </nav>
+        </div>
+      </div>
     </section>
 
     <!-- Skript pro načítání a vyhledávání prezentací -->
     <script>
       async function fetchSlidesList() {
         try {
-          const response = await fetch('https://mtdeg.github.io/slides-md/');
-          const htmlText = await response.text();
-          const parser = new DOMParser();
-          const doc = parser.parseFromString(htmlText, 'text/html');
-
-          const links = [...doc.querySelectorAll('a')].map(a => a.getAttribute('href')).filter(href => href && href.endsWith('.md'));
-
+          const response = await fetch('https://nejen-matematika.github.io/slides-md/list.json');
+          const links = await response.json();
+    
           const filesByPrefix = {
-            'ss-panel':  { input: 'ost-search',  files: links.filter(name => name.startsWith('deg-ss')) },
-            'ost-panel':  { input: 'ost-search',  files: links.filter(name => name.startsWith('deg-ost')) },
+            'vs-panel':      { input: 'vs-search',      files: links.filter(name => name.startsWith('mat-vs')) },
+            'ost-panel':     { input: 'ost-search',     files: links.filter(name => name.startsWith('mat-ost')) },
           };
-
+    
           for (const [panelId, { input, files }] of Object.entries(filesByPrefix)) {
             const panel = document.getElementById(panelId);
-
+    
             if (files.length === 0) {
               const empty = document.createElement('div');
               empty.className = 'panel-block';
@@ -79,17 +79,16 @@
               panel.appendChild(empty);
               continue;
             }
-
+    
             files.forEach(file => {
               const name = file.replace('.md', '');
-              const block = document.createElement('a');
+              const block = document.createElement('div');
               block.className = 'panel-block slide-item';
-              block.href = `slides.html?file=${name}`;
               block.textContent = name;
               block.setAttribute('data-name', name.toLowerCase());
               panel.appendChild(block);
             });
-
+    
             document.getElementById(input).addEventListener('input', e => {
               const term = e.target.value.toLowerCase();
               panel.querySelectorAll('.slide-item').forEach(item => {
@@ -102,6 +101,7 @@
           console.error('Chyba při načítání seznamu:', error);
         }
       }
+    
       document.addEventListener('DOMContentLoaded', fetchSlidesList);
     </script>
 
