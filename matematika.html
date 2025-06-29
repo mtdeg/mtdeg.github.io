@@ -99,9 +99,8 @@
     
             files.forEach(file => {
               const name = file.replace('.md', '');
-              const block = document.createElement('a');
+              const block = document.createElement('div');
               block.className = 'panel-block slide-item';
-              block.href = `slides.html?file=${name}`;
               block.textContent = name;
               block.setAttribute('data-name', name.toLowerCase());
               panel.appendChild(block);
