@@ -76,12 +76,8 @@
       async function fetchSlidesList() {
         try {
           const response = await fetch('https://mtdeg.github.io/slides-md/list.json');
-          const htmlText = await response.text();
-          const parser = new DOMParser();
-          const doc = parser.parseFromString(htmlText, 'text/html');
-
-          const links = [...doc.querySelectorAll('a')].map(a => a.getAttribute('href')).filter(href => href && href.endsWith('.md'));
-
+          const links = await response.json();
+    
           const filesByPrefix = {
             'zs-panel':      { input: 'zs-search',     files: links.filter(name => name.startsWith('mat-zs')) },
             'prij-ss-panel': { input: 'prij-ss-search', files: links.filter(name => name.startsWith('mat-prij-ss')) },
@@ -89,10 +85,10 @@
             'matur-panel':   { input: 'matur-search',  files: links.filter(name => name.startsWith('mat-matur')) },
             'ost-panel':     { input: 'ost-search',    files: links.filter(name => name.startsWith('mat-ost')) },
           };
-
+    
           for (const [panelId, { input, files }] of Object.entries(filesByPrefix)) {
             const panel = document.getElementById(panelId);
-
+    
             if (files.length === 0) {
               const empty = document.createElement('div');
               empty.className = 'panel-block';
@@ -100,7 +96,7 @@
               panel.appendChild(empty);
               continue;
             }
-
+    
             files.forEach(file => {
               const name = file.replace('.md', '');
               const block = document.createElement('a');
@@ -110,7 +106,7 @@
               block.setAttribute('data-name', name.toLowerCase());
               panel.appendChild(block);
             });
-
+    
             document.getElementById(input).addEventListener('input', e => {
               const term = e.target.value.toLowerCase();
               panel.querySelectorAll('.slide-item').forEach(item => {
@@ -123,6 +119,7 @@
           console.error('Chyba při načítání seznamu:', error);
         }
       }
+    
       document.addEventListener('DOMContentLoaded', fetchSlidesList);
     </script>
 
