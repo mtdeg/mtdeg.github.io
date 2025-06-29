@@ -75,7 +75,7 @@
     <script>
       async function fetchSlidesList() {
         try {
-          const response = await fetch('https://mtdeg.github.io/slides-md/');
+          const response = await fetch('https://mtdeg.github.io/slides-md/list.json');
           const htmlText = await response.text();
           const parser = new DOMParser();
           const doc = parser.parseFromString(htmlText, 'text/html');
