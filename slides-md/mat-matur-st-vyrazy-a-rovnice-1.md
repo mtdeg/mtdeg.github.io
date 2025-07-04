@@ -19,7 +19,7 @@ $$
 --
 
 $$
-x^2 + 16x + 64 = (x + 8)^2
+  x^2 + 16x + 64 = (x + 8)^2
 $$
 
 ---
@@ -29,7 +29,7 @@ $$
 **Pro $x \in \mathbb{R} \setminus \{0\}$ proveďte umocnění a upravte.**
 
 $$
-\left( \frac{3}{x} - \frac{x}{6} \right)^2 =
+  \left( \frac{3}{x} - \frac{x}{6} \right)^2 =
 $$
 
 ---
@@ -39,7 +39,7 @@ $$
 **Pro $a \in \mathbb{R}$ výraz zjednodušte a uveďte podmínky, pro něž má výraz smysl.**
 
 $$
-\left( \frac{1}{a} + \frac{1}{3} \right) : \left( \frac{1}{a} - \frac{a}{9} \right) =
+  \left( \frac{1}{a} + \frac{1}{3} \right) : \left( \frac{1}{a} - \frac{a}{9} \right) =
 $$
 
 ---
@@ -49,7 +49,7 @@ $$
 **Pro $n \in \mathbb{N}$ je dán lomený výraz:**
 
 $$
-\frac{2n - \frac{1}{3}}{3 \left( 1 + \frac{n}{9} \right )}
+  \frac{2n - \frac{1}{3}}{3 \left( 1 + \frac{n}{9} \right )} =
 $$
 
 --
@@ -63,7 +63,7 @@ $$
 **Pro $y \in \mathbb{R} \setminus {0; 1; 2}$ zjednodušte:**
 
 $$
-\frac{y - 1 - \frac{1}{y - 1}}{2y^2 - 4y} =
+  \frac{y - 1 - \frac{1}{y - 1}}{2y^2 - 4y} =
 $$
 
 ---
@@ -73,7 +73,7 @@ $$
 **Pro $a \in \mathbb{R} \setminus {-2; 1; 2}$ zjednodušte:**
 
 $$
-  \frac{(a - 1 - \frac{1}{a - 1}) \cdot \frac{a - 1}{a - a - 4}}{}
+  (a - 1 - \frac{1}{a - 1}) \cdot \frac{a - 1}{a - a - 4}} =
 $$
 
 ---
@@ -93,7 +93,7 @@ $$
 **Pro $n \in \mathbb{N}$ zjednodušte:**
 
 $$
-  \frac{\frac{1}{n} - \frac{1}{2n^2}}{}
+  \frac{2 + \frac{1}{n}}{2 - \frac{1}{2n^2}}
 $$
 
 ---
