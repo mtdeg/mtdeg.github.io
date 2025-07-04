@@ -60,7 +60,7 @@ $$
 
 #### 5
 
-**Pro $y \in \mathbb{R} \setminus \{ 0;\ 1;\ 2 \} $ zjednodušte:**
+**Pro $y \in \mathbb{R} \setminus {0; 1; 2}$ zjednodušte:**
 
 $$
 \frac{y - 1 - \frac{1}{y - 1}}{2y^2 - 4y} =
@@ -70,7 +70,7 @@ $$
 
 #### 6
 
-**Pro $a \in \mathbb{R} \setminus \{ -2; 1; 2 \} $ zjednodušte:**
+**Pro $a \in \mathbb{R} \setminus {-2; 1; 2}$ zjednodušte:**
 
 $$
   \frac{(a - 1 - \frac{1}{a - 1}) \cdot \frac{a - 1}{a - a - 4}}{}
