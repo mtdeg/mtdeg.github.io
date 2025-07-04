@@ -12,7 +12,11 @@ $$
 x^2 + 16x + 64 =
 $$
 
+--
+
 *Využijeme vzorec $(a+b)^2 = a^2 + 2ab + b^2$.*
+
+--
 
 $$
 x^2 + 16x + 64 = (x + 8)^2
@@ -56,7 +60,7 @@ $$
 
 #### 5
 
-**Pro $y \in \mathbb{R} \setminus \{0;\ 1;\ 2\}$ zjednodušte:**
+**Pro $y \in \mathbb{R} \setminus \{ 0;\ 1;\ 2 \} $ zjednodušte:**
 
 $$
 \frac{y - 1 - \frac{1}{y - 1}}{2y^2 - 4y} =
@@ -66,7 +70,7 @@ $$
 
 #### 6
 
-**Pro $a \in \mathbb{R} \setminus \{-2; 1; 2\}$ zjednodušte:**
+**Pro $a \in \mathbb{R} \setminus \{ -2; 1; 2 \} $ zjednodušte:**
 
 $$
   \frac{(a - 1 - \frac{1}{a - 1}) \cdot \frac{a - 1}{a - a - 4}}{}
