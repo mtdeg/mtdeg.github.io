@@ -1,36 +1,32 @@
 # Výrazy a rovnice
 
-### lomené výrazy, vyjádření veličiny
+### Lomené výrazy, vyjádření veličiny
 
 ---
 
 #### 1
 
-**Výraz s proměnnou $x\in \mathbb{R}$ rozložte na součin.**
+**Výraz s proměnnou $x \in \mathbb{R}$ rozložte na součin.**
 
-`$$
-  x^2+16x+64= 
-$$`
+$$
+x^2 + 16x + 64 =
+$$
 
---
+*Využijeme vzorec $(a+b)^2 = a^2 + 2ab + b^2$.*
 
-*využijeme vzorce $ \( a+b \) ^2=a^2+2ab+b^2$ .*
-
---
-
-`$$ 
-  x^2+16x+64=x^2+2n\doteq 8n\doteq x+ 8^2=n\(x+8n\) ^2 
-$$`
+$$
+x^2 + 16x + 64 = (x + 8)^2
+$$
 
 ---
 
-#### 1
+#### 2
 
-**Pro $x\in \mathbb{R} \setminus \{ 0 \}$ proveďte umocnění a upravte.**
+**Pro $x \in \mathbb{R} \setminus \{0\}$ proveďte umocnění a upravte.**
 
-`$$
-  \( \frac{3}{x} - \frac{x}{6} \) ^2 =
-$$`
+$$
+\left( \frac{3}{x} - \frac{x}{6} \right)^2 =
+$$
 
 ---
 
