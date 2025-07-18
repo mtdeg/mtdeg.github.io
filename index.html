@@ -1,15 +1,17 @@
 <!DOCTYPE html>
-<html lang="en" class="has-navbar-fixed-top">
+<html lang="cs" class="has-navbar-fixed-top">
   <head>
     <meta charset="UTF-8" />
     <title>(nejen) matematika</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- CSS knihovna Bulma (pro pěkný celkový vzhled stránky) -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css">
-    <!-- JS knihovna MathJax (pro práci se vzorci) -->
+    <!-- Bulma CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css" />
+
+    <!-- MathJax pro vzorce -->
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script id="MathJax-script" async
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
     <style>
       body {
@@ -22,17 +24,20 @@
   </head>
 
   <body>
-    <!-- Hlavička (záhlaví) stránky -->
+    <!-- Navigace -->
     <nav class="navbar is-spaced is-fixed-top" role="navigation" aria-label="main navigation">
       <div class="navbar-brand">
-        <span class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasic">
-          <span></span><span></span><span></span>
-        </span>
+        <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasic">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
       </div>
       <div id="navbarBasic" class="navbar-menu">
         <div class="navbar-start">
           <a class="navbar-item" href="index.html">Hlavní strana</a>
-          <div class="navbar-item has-dropdown">
+
+          <div class="navbar-item has-dropdown is-hoverable">
             <a class="navbar-link">Matematika</a>
             <div class="navbar-dropdown is-boxed">
               <a class="navbar-item" href="mat-zs.html">Matematika na základní škole</a>
@@ -41,25 +46,27 @@
               <a class="navbar-item" href="mat-uc.html">Učebnice do matematiky</a>
             </div>
           </div>
+
           <a class="navbar-item" href="ostatni.html">Ostatní předměty</a>
         </div>
       </div>
     </nav>
 
-    <!-- Úvodní blok -->
+    <!-- Úvod -->
     <section class="section">
       <div class="container has-text-centered">
         <h1 class="title">Učební materiály a prezentace</h1>
         <p class="is-size-6 has-text-grey">
-          Podklady jsou primárně ve formě prezentací, ale jsou zde i odkazy na materiály ve formátu PDF. Jestli zde doporučené podklady nejsou, 
+          Podklady jsou primárně ve formě prezentací, ale jsou zde i odkazy na materiály ve formátu PDF. Jestli zde doporučené podklady nejsou,
           buďte trpěliví. Pravděpodobně se v příslušné sekci do jednoho až dvou dnů objeví.
         </p>
       </div>
     </section>
-    
-    
+
+    <!-- Obsah -->
     <section class="section">
       <div class="container">
+
         <!-- Poslední aktualizace -->
         <div class="box">
           <h2 class="title is-4">Poslední aktualizace</h2>
@@ -70,48 +77,57 @@
             <li>• Aktualizována prezentace: <strong>FUNK02 – Vlastnosti funkcí</strong></li>
           </ul>
         </div>
-        <!-- Vyhledávání prezentace podle kódu -->
+
+        <!-- Vyhledání prezentace podle kódu -->
         <div class="box">
-          <h2 class="title is-4">Spuštění prezentaci podle kódu</h2>
+          <h2 class="title is-4">Spuštění prezentace podle kódu</h2>
           <div class="columns">
             <div class="column">
-              <input id="input" class="input" type="text" placeholder="Kód prezentace" onkeydown="if(event.key === 'Enter') readAndGoto();" />
+              <input id="input" class="input" type="text" placeholder="Kód prezentace"
+                onkeydown="if(event.key === 'Enter') readAndGoto();" />
             </div>
             <div class="column is-one-fifth">
               <button class="button is-fullwidth is-link" onclick="readAndGoto()">Přejít na</button>
             </div>
           </div>
-        </div>     
+        </div>
+
       </div>
     </section>
 
-    <!-- Ovládání burger menu a přesměrování -->
+    <!-- Patička -->
+    <footer class="footer has-background-black">
+      <div class="content has-text-centered has-text-white">
+        <p>
+          Vytvořila Magdaléna Loskotová. Pokud není uvedeno jinak, je obsah stránek dostupný pod licencí
+          <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" class="has-text-link-light">CC BY NC SA 4.0</a>.
+          Tato stránka je stylována pomocí knihovny <a href="http://bulma.io" class="has-text-link-light">Bulma</a>.
+        </p>
+      </div>
+    </footer>
+
+    <!-- JS -->
     <script>
       function readAndGoto() {
         const code = document.getElementById('input').value.trim();
-        if (code) window.location.href = 'slides.html?file=' + code;
+        if (code) {
+          window.location.href = 'slides.html?file=' + encodeURIComponent(code);
+        }
       }
 
       document.addEventListener('DOMContentLoaded', () => {
-        document.querySelectorAll('.navbar-burger').forEach(burger => {
+        const burgers = document.querySelectorAll('.navbar-burger');
+        burgers.forEach(burger => {
           burger.addEventListener('click', () => {
-            const target = document.getElementById(burger.dataset.target);
+            const targetId = burger.dataset.target;
+            const target = document.getElementById(targetId);
             burger.classList.toggle('is-active');
-            target.classList.toggle('is-active');
+            if (target) {
+              target.classList.toggle('is-active');
+            }
           });
         });
       });
     </script>
   </body>
-
-  <!-- Patička stránky -->
-  <footer class="footer has-background-black">
-    <div class="content has-text-centered has-text-white">
-      <p>
-        Vytvořila Magdaléna Loskotová. Pokud není uvedeno jinak, je obsah stránek dostupný pod licencí
-        <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY NC SA 4.0</a>.
-        Tato stránka je stylována pomocí knihovny <a href="http://bulma.io">Bulma</a>.
-      </p>
-    </div>
-  </footer>
 </html>
