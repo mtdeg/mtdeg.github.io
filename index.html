@@ -7,16 +7,23 @@
 
     <!-- CSS knihovna Bulma (pro pěkný celkový vzhled stránky) -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css">
-    <!-- Knihovna Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <!-- JS knihovna MathJax (pro práci se vzorci) -->
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <style>
+      body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      }
+      .card:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+      }
+    </style>
   </head>
 
   <body>
     <!-- Hlavička (záhlaví) stránky -->
-    <nav class="navbar is-info is-fixed-top" role="navigation" aria-label="main navigation">
+    <nav class="navbar is-white is-spaced is-fixed-top" role="navigation" aria-label="main navigation">
       <div class="navbar-brand">
         <span class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasic">
           <span></span><span></span><span></span>
