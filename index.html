@@ -42,53 +42,45 @@
     </nav>
 
     <!-- Úvodní blok -->
-    <section class="hero is-info is-medium">
-      <div class="hero-body">
-        <div class="container">
-          <h1 class="title is-1">(nejen) matematika</h1>
-          <h2 class="subtitle is-3">Stránka plná učebních materiálů</h2>
-          <p style="margin-bottom: 20px;">
-            Na této stránce najdete podklady pro výuku matematiky a ostatních předmětů.
-            Podklady jsou vytvářeny primárně ve formě prezentací, ale jsou zde i odkazy na materiály ve formátu PDF. 
-          </p>
-          <p>
-            Jestli zde doporučené podklady nejsou, prosím, buďte trpěliví. Pravděpodobně se v příslušné sekci do jednoho až dvou dnů objeví.
-          </p>
+    <section class="section">
+      <div class="container has-text-centered">
+        <h1 class="title">Vítejte!</h1>
+        <p class="subtitle">Najdete zde učební materiály a prezentace.</p>
+        <p style="margin-bottom: 20px;">
+          Podklady jsou vytvářeny primárně ve formě prezentací, ale jsou zde i odkazy na materiály ve formátu PDF. 
+        </p>
+        <p>
+          Jestli zde doporučené podklady nejsou, prosím, buďte trpěliví. Pravděpodobně se v příslušné sekci do jednoho až dvou dnů objeví.
+        </p>
+      </div>
+    </section>
+    
+    <!-- Poslední aktualizace -->
+    <section class="section">
+      <div class="container">
+        <div class="box">
+          <h2 class="title is-4">Poslední aktualizace</h2>
+          <p class="is-size-7 has-text-grey">Aktualizováno: <strong>18. července 2025</strong></p>
+          <ul class="mt-3">
+            <li>• Přidána prezentace: <strong>TRIG01 – Trigonometrie I</strong></li>
+            <li>• Přidána prezentace: <strong>ENER01 – Energie a práce</strong></li>
+            <li>• Aktualizována prezentace: <strong>FUNK02 – Vlastnosti funkcí</strong></li>
+          </ul>
         </div>
       </div>
     </section>
-
-    <section class="hero is-small">
-      <div class="hero-body">
-        <div class="container is-max-desktop p-4 content">
-          <!-- Novinky a aktualizace -->
-          <article class="message is-warning">
-            <div class="message-header">
-              <p>Datum poslední aktualizace učebních materiálů a novinky</p>
+          
+    <!-- Vyhledávání prezentace podle kódu -->
+    <section class="section">
+      <div class="container">
+        <div class="box">
+          <h2 class="title is-4">Spuštění prezentaci podle kódu</h2>
+          <div class="columns">
+            <div class="column">
+              <input id="input" class="input" type="text" placeholder="Kód prezentace" onkeydown="if(event.key === 'Enter') readAndGoto();" />
             </div>
-            <div class="message-body">
-              <p>Poslední aktualizace materiálů proběhla dne <strong>28. 6. 2025 ve 20:00</strong></p>
-              <ul>
-                <li>Přidány prezentace pro XX ročník na téma XX</li>
-                <li>Doplněna sekce XX</li>
-              </ul>
-            </div>
-          </article>
-
-          <!-- Vyhledávání prezentace podle kódu -->
-          <div class="box">
-            <h3 class="title is-4">Učební prezentace</h3>
-            <p>
-              Po zadání kódu prezentace by se daná prezentace měla načíst a otevřít. 
-              Seznam kódů prezentací najdete na příslušných stránkách.
-            </p>
-            <div class="columns">
-              <div class="column">
-                <input id="input" class="input" type="text" placeholder="Kód prezentace" onkeydown="if(event.key === 'Enter') readAndGoto();" />
-              </div>
-              <div class="column is-one-fifth">
-                <button class="button is-fullwidth is-link" onclick="readAndGoto()">Přejít na</button>
-              </div>
+            <div class="column is-one-fifth">
+              <button class="button is-fullwidth is-link" onclick="readAndGoto()">Přejít na</button>
             </div>
           </div>
         </div>     
