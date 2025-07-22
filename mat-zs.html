@@ -7,11 +7,13 @@
 
     <!-- Bulma CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css" />
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <!-- MathJax pro vzorce -->
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <!-- JS (ale vlastně i CSS) knihovna highlight.js (pro pěkný kód) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.0.1/styles/base16/bright.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.0.1/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
 
     <style>
       body {
@@ -25,24 +27,34 @@
 
   <body>
     <!-- Navigace -->
-    <nav class="navbar is-info is-fixed-top" role="navigation" aria-label="main navigation">
+    <nav class="navbar is-spaced is-fixed-top" role="navigation" aria-label="main navigation">
       <div class="navbar-brand">
-        <span class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasic">
-          <span></span><span></span><span></span>
-        </span>
+        <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasic">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
       </div>
       <div id="navbarBasic" class="navbar-menu">
         <div class="navbar-start">
           <a class="navbar-item" href="index.html">Hlavní strana</a>
-          <a class="navbar-item" href="mat-zs.html">Matematika na ZŠ</a>
-          <a class="navbar-item" href="mat-ss.html">Matematika na SŠ</a>
-          <a class="navbar-item" href="mat-ost.html">Ostatní z matematiky</a>
-          <a class="navbar-item" href="mat-uc.html">Učebnice</a>
+
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a class="navbar-link">Matematika</a>
+            <div class="navbar-dropdown is-boxed">
+              <a class="navbar-item" href="mat-zs.html">Matematika na základní škole</a>
+              <a class="navbar-item" href="mat-ss.html">Matematika na střední škole</a>
+              <a class="navbar-item" href="mat-ost.html">Ostatní z matematiky</a>
+              <a class="navbar-item" href="mat-uc.html">Učebnice do matematiky</a>
+            </div>
+          </div>
+
           <a class="navbar-item" href="ostatni.html">Ostatní předměty</a>
         </div>
       </div>
     </nav>
 
+    <!-- Obsah stránky -->
     <!-- Úvodní sekce -->
     <section class="hero is-light is-small mt-6">
       <div class="hero-body">
@@ -52,12 +64,11 @@
         </div>
       </div>
     </section>
-
-    <!-- Obsah sekce -->
+    
     <section class="section">
       <div class="container">
-        <!-- Spuštění prezentace podle kódu -->
-        <div class="box mb-6">
+        <!-- Vyhledání prezentace podle kódu -->
+        <div class="box">
           <h2 class="title is-4">Spuštění prezentace podle kódu</h2>
           <div class="columns">
             <div class="column">
@@ -70,12 +81,12 @@
           </div>
         </div>
 
-        <!-- Panely pro sekce -->
+        <!-- Přehled panelů -->
         <div class="columns is-multiline">
           <div class="column is-half">
             <div class="box">
               <h3 class="title is-5">8. třída ZŠ</h3>
-              <nav class="panel is-info" id="zs-8-panel" style="max-height: 320px; overflow-y: auto;">
+              <nav class="panel" id="zs-8-panel" style="max-height: 320px; overflow-y: auto;">
                 <div class="panel-block">
                   <input id="zs-8-search" class="input" type="text" placeholder="Vyhledat…">
                 </div>
@@ -85,7 +96,7 @@
           <div class="column is-half">
             <div class="box">
               <h3 class="title is-5">9. třída ZŠ</h3>
-              <nav class="panel is-info" id="zs-9-panel" style="max-height: 320px; overflow-y: auto;">
+              <nav class="panel" id="zs-9-panel" style="max-height: 320px; overflow-y: auto;">
                 <div class="panel-block">
                   <input id="zs-9-search" class="input" type="text" placeholder="Vyhledat…">
                 </div>
@@ -95,7 +106,7 @@
           <div class="column is-half">
             <div class="box">
               <h3 class="title is-5">Přijímačky – čtyřletá</h3>
-              <nav class="panel is-info" id="prij-4-panel" style="max-height: 320px; overflow-y: auto;">
+              <nav class="panel" id="prij-4-panel" style="max-height: 320px; overflow-y: auto;">
                 <div class="panel-block">
                   <input id="prij-4-search" class="input" type="text" placeholder="Vyhledat…">
                 </div>
@@ -105,7 +116,7 @@
           <div class="column is-half">
             <div class="box">
               <h3 class="title is-5">Přijímačky – šestiletá</h3>
-              <nav class="panel is-info" id="prij-6-panel" style="max-height: 320px; overflow-y: auto;">
+              <nav class="panel" id="prij-6-panel" style="max-height: 320px; overflow-y: auto;">
                 <div class="panel-block">
                   <input id="prij-6-search" class="input" type="text" placeholder="Vyhledat…">
                 </div>
@@ -115,7 +126,7 @@
           <div class="column is-half">
             <div class="box">
               <h3 class="title is-5">Přijímačky – osmiletá</h3>
-              <nav class="panel is-info" id="prij-8-panel" style="max-height: 320px; overflow-y: auto;">
+              <nav class="panel" id="prij-8-panel" style="max-height: 320px; overflow-y: auto;">
                 <div class="panel-block">
                   <input id="prij-8-search" class="input" type="text" placeholder="Vyhledat…">
                 </div>
