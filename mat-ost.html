@@ -69,41 +69,45 @@
 
     <section class="section">
       <div class="container">
-        <!-- Vyhledání prezentace podle kódu -->
-        <div class="box">
-          <h2 class="title is-4">Spuštění prezentace podle kódu</h2>
-          <div class="columns">
-            <div class="column">
-              <input id="input" class="input" type="text" placeholder="Kód prezentace"
-                onkeydown="if(event.key === 'Enter') readAndGoto();" />
-            </div>
-            <div class="column is-one-fifth">
-              <button class="button is-fullwidth is-link" onclick="readAndGoto()">Přejít na</button>
+        <!-- Spuštění prezentace podle kódu -->
+        <div class="columns is-multiline">
+          <div class="column is-full">
+            <div class="box">
+              <h2 class="title is-4">Spuštění prezentace podle kódu</h2>
+              <div class="columns">
+                <div class="column">
+                  <input id="input" class="input" type="text" placeholder="Kód prezentace"
+                    onkeydown="if(event.key === 'Enter') readAndGoto();" />
+                </div>
+                <div class="column is-one-fifth">
+                  <button class="button is-fullwidth is-link" onclick="readAndGoto()">Přejít na</button>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="dynamic-subjects" class="hero is-small">
-      <div class="hero-body">
-        <div class="container is-max-desktop p-4 content">
-          <h3 class="title is-4">Přehled kódů prezentací</h3>
-
-          <!-- Panely pro jednotlivé sekce -->
-          <nav class="panel mb-5" id="vs-panel" style="max-height: 320px; overflow-y: auto;">
-            <p class="panel-heading">Vysokoškolská matematika</p>
-            <div class="panel-block">
-              <input id="vs-search" class="input" type="text" placeholder="Vyhledat…">
+    
+          <!-- Panely s přehledem -->
+          <div class="column is-half">
+            <div class="box">
+              <h3 class="title is-5">Vysokoškolská matematika</h3>
+              <nav class="panel" id="vs-panel" style="max-height: 320px; overflow-y: auto;">
+                <div class="panel-block">
+                  <input id="vs-search" class="input" type="text" placeholder="Vyhledat…">
+                </div>
+              </nav>
             </div>
-          </nav>
-
-          <nav class="panel mb-5" id="ost-panel" style="max-height: 320px; overflow-y: auto;">
-            <p class="panel-heading">Ostatní</p>
-            <div class="panel-block">
-              <input id="ost-search" class="input" type="text" placeholder="Vyhledat…">
+          </div>
+    
+          <div class="column is-half">
+            <div class="box">
+              <h3 class="title is-5">Ostatní</h3>
+              <nav class="panel" id="ost-panel" style="max-height: 320px; overflow-y: auto;">
+                <div class="panel-block">
+                  <input id="ost-search" class="input" type="text" placeholder="Vyhledat…">
+                </div>
+              </nav>
             </div>
-          </nav>
+          </div>
         </div>
       </div>
     </section>
