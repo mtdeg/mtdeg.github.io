@@ -6,10 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- Bulma CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <!-- MathJax -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css" />
+    <!-- MathJax pro vzorce -->
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <!-- JS (ale vlastně i CSS) knihovna highlight.js (pro pěkný kód) -->
@@ -60,15 +58,15 @@
     
     <section class="section">
       <div class="container">
-        <!-- Spuštění prezentace podle kódu -->
+        <!-- Vyhledání prezentace podle kódu -->
         <div class="box">
           <h2 class="title is-4">Spuštění prezentace podle kódu</h2>
-          <div class="columns is-variable is-4">
-            <div class="column is-four-fifths">
+          <div class="columns">
+            <div class="column">
               <input id="input" class="input" type="text" placeholder="Kód prezentace"
                 onkeydown="if(event.key === 'Enter') readAndGoto();" />
             </div>
-            <div class="column">
+            <div class="column is-one-fifth">
               <button class="button is-fullwidth is-link" onclick="readAndGoto()">Přejít na</button>
             </div>
           </div>
@@ -193,7 +191,7 @@
       function readAndGoto() {
         const code = document.getElementById('input').value.trim();
         if (code) {
-          window.location.href = `https://nejen-matematika.github.io/slides-md/${code}.html`;
+          window.location.href = 'slides.html?file=' + encodeURIComponent(code);
         }
       }
       
