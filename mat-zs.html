@@ -1,20 +1,30 @@
-<html lang="en" class="has-navbar-fixed-top">
+<!DOCTYPE html>
+<html lang="cs" class="has-navbar-fixed-top">
   <head>
     <meta charset="UTF-8" />
     <title>(nejen) matematika</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- CSS knihovna Bulma (pro pěkný celkový vzhled stránky) -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css">
-    <!-- Knihovna Font Awesome -->
+    <!-- Bulma CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css" />
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <!-- JS knihovna MathJax (pro práci se vzorci) -->
+    <!-- MathJax pro vzorce -->
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <style>
+      body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      }
+      .card:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+      }
+    </style>
   </head>
 
   <body>
-    <!-- Hlavička (záhlaví) stránky -->
+    <!-- Navigace -->
     <nav class="navbar is-info is-fixed-top" role="navigation" aria-label="main navigation">
       <div class="navbar-brand">
         <span class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasic">
@@ -24,74 +34,125 @@
       <div id="navbarBasic" class="navbar-menu">
         <div class="navbar-start">
           <a class="navbar-item" href="index.html">Hlavní strana</a>
-          <a class="navbar-item" href="mat-zs.html">Matematika na základní škole</a>
-          <a class="navbar-item" href="mat-ss.html">Matematika na střední škole</a>
+          <a class="navbar-item" href="mat-zs.html">Matematika na ZŠ</a>
+          <a class="navbar-item" href="mat-ss.html">Matematika na SŠ</a>
           <a class="navbar-item" href="mat-ost.html">Ostatní z matematiky</a>
-          <a class="navbar-item" href="mat-uc.html">Učebnice do matematiky</a>
+          <a class="navbar-item" href="mat-uc.html">Učebnice</a>
           <a class="navbar-item" href="ostatni.html">Ostatní předměty</a>
         </div>
       </div>
     </nav>
 
-    <!-- Vlastní obsah stránky -->
-    <section id="dynamic-subjects" class="hero is-small">
+    <!-- Úvodní sekce -->
+    <section class="hero is-light is-small mt-6">
       <div class="hero-body">
-        <div class="container is-max-desktop p-4 content">
-          <h3 class="title is-4">Přehled kódů prezentací</h3>
-
-          <!-- Panely pro jednotlivé sekce -->
-          <nav class="panel is-info mb-5" id="zs-8-panel" style="max-height: 320px; overflow-y: auto;">
-            <p class="panel-heading">8. třída ZŠ</p>
-            <div class="panel-block">
-              <input id="zs-8-search" class="input" type="text" placeholder="Vyhledat…">
-            </div>
-          </nav>
-          <nav class="panel is-info mb-5" id="zs-9-panel" style="max-height: 320px; overflow-y: auto;">
-            <p class="panel-heading">9. třída ZŠ</p>
-            <div class="panel-block">
-              <input id="zs-9-search" class="input" type="text" placeholder="Vyhledat…">
-            </div>
-          </nav>
-          <nav class="panel is-info mb-5" id="prij-4-panel" style="max-height: 320px; overflow-y: auto;">
-            <p class="panel-heading">Příprava na přijímací zkoušky na SŠ (čtyřletá)</p>
-            <div class="panel-block">
-              <input id="prij-4-search" class="input" type="text" placeholder="Vyhledat…">
-            </div>
-          </nav>
-          <nav class="panel is-info mb-5" id="prij-6-panel" style="max-height: 320px; overflow-y: auto;">
-            <p class="panel-heading">Příprava na přijímací zkoušky na SŠ (šestiletá)</p>
-            <div class="panel-block">
-              <input id="prij-6-search" class="input" type="text" placeholder="Vyhledat…">
-            </div>
-          </nav>
-          <nav class="panel is-info mb-5" id="prij-8-panel" style="max-height: 320px; overflow-y: auto;">
-            <p class="panel-heading">Příprava na přijímací zkoušky na SŠ (osmiletá)</p>
-            <div class="panel-block">
-              <input id="prij-8-search" class="input" type="text" placeholder="Vyhledat…">
-            </div>
-          </nav>
+        <div class="container has-text-centered">
+          <h1 class="title is-3">Přehled prezentací</h1>
+          <p class="subtitle is-6">Zadej kód nebo si vyber z dostupných kategorií</p>
         </div>
       </div>
     </section>
 
-    <!-- Skript pro načítání a vyhledávání prezentací -->
+    <!-- Obsah sekce -->
+    <section class="section">
+      <div class="container">
+        <!-- Spuštění prezentace podle kódu -->
+        <div class="box mb-6">
+          <h2 class="title is-4">Spuštění prezentace podle kódu</h2>
+          <div class="columns">
+            <div class="column">
+              <input id="input" class="input" type="text" placeholder="Kód prezentace"
+                onkeydown="if(event.key === 'Enter') readAndGoto();" />
+            </div>
+            <div class="column is-one-fifth">
+              <button class="button is-fullwidth is-link" onclick="readAndGoto()">Přejít na</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Panely pro sekce -->
+        <div class="columns is-multiline">
+          <div class="column is-half">
+            <div class="box">
+              <h3 class="title is-5">8. třída ZŠ</h3>
+              <nav class="panel is-info" id="zs-8-panel" style="max-height: 320px; overflow-y: auto;">
+                <div class="panel-block">
+                  <input id="zs-8-search" class="input" type="text" placeholder="Vyhledat…">
+                </div>
+              </nav>
+            </div>
+          </div>
+          <div class="column is-half">
+            <div class="box">
+              <h3 class="title is-5">9. třída ZŠ</h3>
+              <nav class="panel is-info" id="zs-9-panel" style="max-height: 320px; overflow-y: auto;">
+                <div class="panel-block">
+                  <input id="zs-9-search" class="input" type="text" placeholder="Vyhledat…">
+                </div>
+              </nav>
+            </div>
+          </div>
+          <div class="column is-half">
+            <div class="box">
+              <h3 class="title is-5">Přijímačky – čtyřletá</h3>
+              <nav class="panel is-info" id="prij-4-panel" style="max-height: 320px; overflow-y: auto;">
+                <div class="panel-block">
+                  <input id="prij-4-search" class="input" type="text" placeholder="Vyhledat…">
+                </div>
+              </nav>
+            </div>
+          </div>
+          <div class="column is-half">
+            <div class="box">
+              <h3 class="title is-5">Přijímačky – šestiletá</h3>
+              <nav class="panel is-info" id="prij-6-panel" style="max-height: 320px; overflow-y: auto;">
+                <div class="panel-block">
+                  <input id="prij-6-search" class="input" type="text" placeholder="Vyhledat…">
+                </div>
+              </nav>
+            </div>
+          </div>
+          <div class="column is-half">
+            <div class="box">
+              <h3 class="title is-5">Přijímačky – osmiletá</h3>
+              <nav class="panel is-info" id="prij-8-panel" style="max-height: 320px; overflow-y: auto;">
+                <div class="panel-block">
+                  <input id="prij-8-search" class="input" type="text" placeholder="Vyhledat…">
+                </div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skript pro vyhledávání a navigaci -->
     <script>
+      function readAndGoto(code = null) {
+        if (!code) {
+          code = document.getElementById('input').value.trim();
+        }
+        if (code) {
+          window.location.href = `https://nejen-matematika.github.io/slides-md/${encodeURIComponent(code)}.html`;
+        }
+      }
+
       async function fetchSlidesList() {
         try {
           const response = await fetch('https://nejen-matematika.github.io/slides-md/list.json');
           const links = await response.json();
-    
+
           const filesByPrefix = {
-            'zs-8-panel':      { input: 'zs-8-search',      files: links.filter(name => name.startsWith('mat-zs-8')) },
-            'zs-9-panel':      { input: 'zs-9-search',      files: links.filter(name => name.startsWith('mat-zs-9')) },
-            'prij-4-panel':    { input: 'prij-4-search',    files: links.filter(name => name.startsWith('mat-prij-4')) },
-            'prij-6-panel':    { input: 'prij-6-search',    files: links.filter(name => name.startsWith('mat-prij-6')) },
-            'prij-8-panel':    { input: 'prij-8-search',    files: links.filter(name => name.startsWith('mat-prij-6')) },
+            'zs-8-panel':   { input: 'zs-8-search',   files: links.filter(name => name.startsWith('mat-zs-8')) },
+            'zs-9-panel':   { input: 'zs-9-search',   files: links.filter(name => name.startsWith('mat-zs-9')) },
+            'prij-4-panel': { input: 'prij-4-search', files: links.filter(name => name.startsWith('mat-prij-4')) },
+            'prij-6-panel': { input: 'prij-6-search', files: links.filter(name => name.startsWith('mat-prij-6')) },
+            'prij-8-panel': { input: 'prij-8-search', files: links.filter(name => name.startsWith('mat-prij-8')) },
           };
-    
+
           for (const [panelId, { input, files }] of Object.entries(filesByPrefix)) {
             const panel = document.getElementById(panelId);
-    
+
             if (files.length === 0) {
               const empty = document.createElement('div');
               empty.className = 'panel-block';
@@ -99,16 +160,17 @@
               panel.appendChild(empty);
               continue;
             }
-    
+
             files.forEach(file => {
               const name = file.replace('.md', '');
               const block = document.createElement('div');
-              block.className = 'panel-block slide-item';
+              block.className = 'panel-block slide-item is-clickable';
               block.textContent = name;
               block.setAttribute('data-name', name.toLowerCase());
+              block.onclick = () => readAndGoto(name);
               panel.appendChild(block);
             });
-    
+
             document.getElementById(input).addEventListener('input', e => {
               const term = e.target.value.toLowerCase();
               panel.querySelectorAll('.slide-item').forEach(item => {
@@ -121,13 +183,10 @@
           console.error('Chyba při načítání seznamu:', error);
         }
       }
-    
-      document.addEventListener('DOMContentLoaded', fetchSlidesList);
-    </script>
 
-    <!-- Ovládání burger menu a přesměrování -->
-    <script>
       document.addEventListener('DOMContentLoaded', () => {
+        fetchSlidesList();
+
         document.querySelectorAll('.navbar-burger').forEach(burger => {
           burger.addEventListener('click', () => {
             const target = document.getElementById(burger.dataset.target);
@@ -137,16 +196,16 @@
         });
       });
     </script>
-  </body>
 
-  <!-- Patička stránky -->
-  <footer class="footer has-background-black">
-    <div class="content has-text-centered has-text-white">
-      <p>
-        Vytvořila Magdaléna Loskotová. Pokud není uvedeno jinak, je obsah stránek dostupný pod licencí
-        <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY NC SA 4.0</a>.
-        Tato stránka je stylována pomocí knihovny <a href="http://bulma.io">Bulma</a>.
-      </p>
-    </div>
-  </footer>
+    <!-- Patička stránky -->
+    <footer class="footer has-background-black">
+      <div class="content has-text-centered has-text-white">
+        <p>
+          Vytvořila Magdaléna Loskotová. Pokud není uvedeno jinak, je obsah stránek dostupný pod licencí
+          <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY NC SA 4.0</a>.
+          Tato stránka je stylována pomocí knihovny <a href="http://bulma.io">Bulma</a>.
+        </p>
+      </div>
+    </footer>
+  </body>
 </html>
