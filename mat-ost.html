@@ -67,22 +67,19 @@
 
     <section class="section">
       <div class="container">
-        <!-- Spuštění prezentace podle kódu -->
-        <div class="columns is-multiline">
-          <div class="column is-full">
-            <div class="box">
-              <h2 class="title is-4">Spuštění prezentace podle kódu</h2>
-              <div class="columns">
-                <div class="column">
-                  <input id="input" class="input" type="text" placeholder="Kód prezentace"
-                    onkeydown="if(event.key === 'Enter') readAndGoto();" />
-                </div>
-                <div class="column is-one-fifth">
-                  <button class="button is-fullwidth is-link" onclick="readAndGoto()">Přejít na</button>
-                </div>
-              </div>
+        <!-- Vyhledání prezentace podle kódu -->
+        <div class="box">
+          <h2 class="title is-4">Spuštění prezentace podle kódu</h2>
+          <div class="columns">
+            <div class="column">
+              <input id="input" class="input" type="text" placeholder="Kód prezentace"
+                onkeydown="if(event.key === 'Enter') readAndGoto();" />
+            </div>
+            <div class="column is-one-fifth">
+              <button class="button is-fullwidth is-link" onclick="readAndGoto()">Přejít na</button>
             </div>
           </div>
+        </div>
     
           <!-- Panely s přehledem -->
           <div class="column is-half">
