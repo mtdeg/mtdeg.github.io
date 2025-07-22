@@ -1,22 +1,25 @@
-<html lang="en" class="has-navbar-fixed-top">
+<!DOCTYPE html>
+<html lang="cs" class="has-navbar-fixed-top">
   <head>
     <meta charset="UTF-8" />
     <title>(nejen) matematika</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- CSS knihovna Bulma (pro pěkný celkový vzhled stránky) -->
+    <!-- Bulma CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css">
-    <!-- Knihovna Font Awesome -->
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <!-- JS knihovna MathJax (pro práci se vzorci) -->
+    <!-- MathJax -->
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
   </head>
-
   <body>
-    <!-- Hlavička (záhlaví) stránky -->
+    <!-- Navbar -->
     <nav class="navbar is-info is-fixed-top" role="navigation" aria-label="main navigation">
       <div class="navbar-brand">
+        <a class="navbar-item" href="index.html">
+          <strong>(nejen) matematika</strong>
+        </a>
         <span class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasic">
           <span></span><span></span><span></span>
         </span>
@@ -24,129 +27,136 @@
       <div id="navbarBasic" class="navbar-menu">
         <div class="navbar-start">
           <a class="navbar-item" href="index.html">Hlavní strana</a>
-          <a class="navbar-item" href="mat-zs.html">Matematika na základní škole</a>
-          <a class="navbar-item" href="mat-ss.html">Matematika na střední škole</a>
+          <a class="navbar-item" href="mat-zs.html">Matematika na ZŠ</a>
+          <a class="navbar-item" href="mat-ss.html">Matematika na SŠ</a>
           <a class="navbar-item" href="mat-ost.html">Ostatní z matematiky</a>
-          <a class="navbar-item" href="mat-uc.html">Učebnice do matematiky</a>
+          <a class="navbar-item" href="mat-uc.html">Učebnice</a>
           <a class="navbar-item" href="ostatni.html">Ostatní předměty</a>
         </div>
       </div>
     </nav>
 
-    <!-- Vlastní obsah stránky -->
-    <section id="dynamic-subjects" class="hero is-small">
-      <div class="hero-body">
-        <div class="container is-max-desktop p-4 content">
-          <h3 class="title is-4">Přehled kódů prezentací</h3>
+    <!-- Obsah stránky -->
+    <section class="section">
+      <div class="container">
+        <div class="box">
+          <h2 class="title is-4">Spuštění prezentace podle kódu</h2>
+          <div class="columns is-variable is-4">
+            <div class="column is-four-fifths">
+              <input id="input" class="input" type="text" placeholder="Kód prezentace"
+                onkeydown="if(event.key === 'Enter') readAndGoto();" />
+            </div>
+            <div class="column">
+              <button class="button is-fullwidth is-link" onclick="readAndGoto()">Přejít na</button>
+            </div>
+          </div>
+        </div>
 
-          <!-- Panely pro jednotlivé sekce -->
-          <nav class="panel is-info mb-5" id="ss-1-panel" style="max-height: 320px; overflow-y: auto;">
-            <p class="panel-heading">1. ročník SŠ</p>
-            <div class="panel-block">
-              <input id="ss-1-search" class="input" type="text" placeholder="Vyhledat…">
+        <!-- Přehled panelů -->
+        <div class="columns is-multiline">
+          <div class="column is-half">
+            <div class="box">
+              <nav class="panel is-info" id="ss-1-panel" style="max-height: 320px; overflow-y: auto;">
+                <p class="panel-heading">1. ročník SŠ</p>
+                <div class="panel-block">
+                  <input id="ss-1-search" class="input" type="text" placeholder="Vyhledat…">
+                </div>
+              </nav>
             </div>
-          </nav>
-          <nav class="panel is-info mb-5" id="ss-2-panel" style="max-height: 320px; overflow-y: auto;">
-            <p class="panel-heading">2. ročník SŠ</p>
-            <div class="panel-block">
-              <input id="ss-2-search" class="input" type="text" placeholder="Vyhledat…">
+          </div>
+
+          <div class="column is-half">
+            <div class="box">
+              <nav class="panel is-info" id="ss-2-panel" style="max-height: 320px; overflow-y: auto;">
+                <p class="panel-heading">2. ročník SŠ</p>
+                <div class="panel-block">
+                  <input id="ss-2-search" class="input" type="text" placeholder="Vyhledat…">
+                </div>
+              </nav>
             </div>
-          </nav>
-          <nav class="panel is-info mb-5" id="ss-3-panel" style="max-height: 320px; overflow-y: auto;">
-            <p class="panel-heading">3. ročník SŠ</p>
-            <div class="panel-block">
-              <input id="ss-3-search" class="input" type="text" placeholder="Vyhledat…">
+          </div>
+
+          <div class="column is-half">
+            <div class="box">
+              <nav class="panel is-info" id="ss-3-panel" style="max-height: 320px; overflow-y: auto;">
+                <p class="panel-heading">3. ročník SŠ</p>
+                <div class="panel-block">
+                  <input id="ss-3-search" class="input" type="text" placeholder="Vyhledat…">
+                </div>
+              </nav>
             </div>
-          </nav>
-          <nav class="panel is-info mb-5" id="ss-4-panel" style="max-height: 320px; overflow-y: auto;">
-            <p class="panel-heading">4. ročník SŠ</p>
-            <div class="panel-block">
-              <input id="ss-4-search" class="input" type="text" placeholder="Vyhledat…">
+          </div>
+
+          <div class="column is-half">
+            <div class="box">
+              <nav class="panel is-info" id="ss-4-panel" style="max-height: 320px; overflow-y: auto;">
+                <p class="panel-heading">4. ročník SŠ</p>
+                <div class="panel-block">
+                  <input id="ss-4-search" class="input" type="text" placeholder="Vyhledat…">
+                </div>
+              </nav>
             </div>
-          </nav>
-          <nav class="panel is-info mb-5" id="matur-st-panel" style="max-height: 320px; overflow-y: auto;">
-            <p class="panel-heading">Příprava na státní maturitu</p>
-            <div class="panel-block">
-              <input id="matur-st-search" class="input" type="text" placeholder="Vyhledat…">
+          </div>
+
+          <div class="column is-half">
+            <div class="box">
+              <nav class="panel is-info" id="matur-st-panel" style="max-height: 320px; overflow-y: auto;">
+                <p class="panel-heading">Příprava na státní maturitu</p>
+                <div class="panel-block">
+                  <input id="matur-st-search" class="input" type="text" placeholder="Vyhledat…">
+                </div>
+              </nav>
             </div>
-          </nav>
-          <nav class="panel is-info mb-5" id="matur-pl-panel" style="max-height: 320px; overflow-y: auto;">
-            <p class="panel-heading">Příprava na státní maturitu - matematika +</p>
-            <div class="panel-block">
-              <input id="matur-pl-search" class="input" type="text" placeholder="Vyhledat…">
+          </div>
+
+          <div class="column is-half">
+            <div class="box">
+              <nav class="panel is-info" id="matur-pl-panel" style="max-height: 320px; overflow-y: auto;">
+                <p class="panel-heading">Příprava na státní maturitu - matematika +</p>
+                <div class="panel-block">
+                  <input id="matur-pl-search" class="input" type="text" placeholder="Vyhledat…">
+                </div>
+              </nav>
             </div>
-          </nav>
-          <nav class="panel is-info mb-5" id="matur-sk-panel" style="max-height: 320px; overflow-y: auto;">
-            <p class="panel-heading">Příprava na školní maturitu</p>
-            <div class="panel-block">
-              <input id="matur-sk-search" class="input" type="text" placeholder="Vyhledat…">
+          </div>
+
+          <div class="column is-half">
+            <div class="box">
+              <nav class="panel is-info" id="matur-sk-panel" style="max-height: 320px; overflow-y: auto;">
+                <p class="panel-heading">Příprava na školní maturitu</p>
+                <div class="panel-block">
+                  <input id="matur-sk-search" class="input" type="text" placeholder="Vyhledat…">
+                </div>
+              </nav>
             </div>
-          </nav>
-          <nav class="panel is-info mb-5" id="sem-panel" style="max-height: 320px; overflow-y: auto;">
-            <p class="panel-heading">Semináře</p>
-            <div class="panel-block">
-              <input id="sem-search" class="input" type="text" placeholder="Vyhledat…">
+          </div>
+
+          <div class="column is-half">
+            <div class="box">
+              <nav class="panel is-info" id="sem-panel" style="max-height: 320px; overflow-y: auto;">
+                <p class="panel-heading">Semináře</p>
+                <div class="panel-block">
+                  <input id="sem-search" class="input" type="text" placeholder="Vyhledat…">
+                </div>
+              </nav>
             </div>
-          </nav>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- Skript pro načítání a vyhledávání prezentací -->
-    <script>
-      async function fetchSlidesList() {
-        try {
-          const response = await fetch('https://nejen-matematika.github.io/slides-md/list.json');
-          const links = await response.json();
-    
-          const filesByPrefix = {
-            'ss-1-panel':      { input: 'ss-1-search',     files: links.filter(name => name.startsWith('mat-ss-1')) },
-            'ss-2-panel':      { input: 'ss-2-search',     files: links.filter(name => name.startsWith('mat-ss-2')) },
-            'ss-3-panel':      { input: 'ss-3-search',     files: links.filter(name => name.startsWith('mat-ss-3')) },
-            'ss-4-panel':      { input: 'ss-4-search',     files: links.filter(name => name.startsWith('mat-ss-4')) },
-            'matur-st-panel':  { input: 'prij-ss-search',  files: links.filter(name => name.startsWith('mat-matur-st')) },
-            'matur-pl-panel':  { input: 'ss-search',       files: links.filter(name => name.startsWith('mat-matur-pl')) },
-            'matur-sk-panel':  { input: 'matur-search',    files: links.filter(name => name.startsWith('mat-matur-sk')) },
-            'sem-panel':       { input: 'ost-search',      files: links.filter(name => name.startsWith('mat-sem')) },
-          };
-    
-          for (const [panelId, { input, files }] of Object.entries(filesByPrefix)) {
-            const panel = document.getElementById(panelId);
-    
-            if (files.length === 0) {
-              const empty = document.createElement('div');
-              empty.className = 'panel-block';
-              empty.textContent = 'Žádné dostupné soubory';
-              panel.appendChild(empty);
-              continue;
-            }
-    
-            files.forEach(file => {
-              const name = file.replace('.md', '');
-              const block = document.createElement('div');
-              block.className = 'panel-block slide-item';
-              block.textContent = name;
-              block.setAttribute('data-name', name.toLowerCase());
-              panel.appendChild(block);
-            });
-    
-            document.getElementById(input).addEventListener('input', e => {
-              const term = e.target.value.toLowerCase();
-              panel.querySelectorAll('.slide-item').forEach(item => {
-                const name = item.getAttribute('data-name');
-                item.style.display = name.includes(term) ? 'block' : 'none';
-              });
-            });
-          }
-        } catch (error) {
-          console.error('Chyba při načítání seznamu:', error);
-        }
-      }
-    
-      document.addEventListener('DOMContentLoaded', fetchSlidesList);
-    </script>
+    <!-- Footer -->
+    <footer class="footer has-background-black">
+      <div class="content has-text-centered has-text-white">
+        <p>
+          Vytvořila Magdaléna Loskotová. Obsah pod licencí
+          <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY NC SA 4.0</a>.
+          Stylováno pomocí <a href="https://bulma.io">Bulma</a>.
+        </p>
+      </div>
+    </footer>
 
-    <!-- Ovládání burger menu a přesměrování -->
+    <!-- JS Scripts -->
     <script>
       document.addEventListener('DOMContentLoaded', () => {
         document.querySelectorAll('.navbar-burger').forEach(burger => {
@@ -157,17 +167,69 @@
           });
         });
       });
+
+      function readAndGoto() {
+        const code = document.getElementById('input').value.trim();
+        if (code) {
+          window.location.href = `https://nejen-matematika.github.io/slides-md/${code}.html`;
+        }
+      }
+
+      async function fetchSlidesList() {
+        try {
+          const response = await fetch('https://nejen-matematika.github.io/slides-md/list.json');
+          const files = await response.json();
+
+          const panels = {
+            'ss-1-panel': 'ss-1-search',
+            'ss-2-panel': 'ss-2-search',
+            'ss-3-panel': 'ss-3-search',
+            'ss-4-panel': 'ss-4-search',
+            'matur-st-panel': 'matur-st-search',
+            'matur-pl-panel': 'matur-pl-search',
+            'matur-sk-panel': 'matur-sk-search',
+            'sem-panel': 'sem-search'
+          };
+
+          for (const [panelId, inputId] of Object.entries(panels)) {
+            const panel = document.getElementById(panelId);
+            const input = document.getElementById(inputId);
+            const prefix = panelId.replace('-panel', '');
+            const relevant = files.filter(name => name.startsWith(`mat-${prefix}`));
+
+            if (relevant.length === 0) {
+              const empty = document.createElement('div');
+              empty.className = 'panel-block';
+              empty.textContent = 'Žádné dostupné soubory';
+              panel.appendChild(empty);
+              continue;
+            }
+
+            relevant.forEach(file => {
+              const name = file.replace('.md', '');
+              const block = document.createElement('div');
+              block.className = 'panel-block';
+              block.textContent = name;
+              block.onclick = () => window.location.href = `https://nejen-matematika.github.io/slides-md/${name}.html`;
+              panel.appendChild(block);
+            });
+
+            input.addEventListener('input', e => {
+              const term = e.target.value.toLowerCase();
+              panel.querySelectorAll('.panel-block').forEach(item => {
+                if (!item.textContent.includes('Žádné dostupné')) {
+                  const name = item.textContent.toLowerCase();
+                  item.style.display = name.includes(term) ? '' : 'none';
+                }
+              });
+            });
+          }
+        } catch (e) {
+          console.error('Chyba při načítání souborů:', e);
+        }
+      }
+
+      document.addEventListener('DOMContentLoaded', fetchSlidesList);
     </script>
   </body>
-
-  <!-- Patička stránky -->
-  <footer class="footer has-background-black">
-    <div class="content has-text-centered has-text-white">
-      <p>
-        Vytvořila Magdaléna Loskotová. Pokud není uvedeno jinak, je obsah stránek dostupný pod licencí
-        <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY NC SA 4.0</a>.
-        Tato stránka je stylována pomocí knihovny <a href="http://bulma.io">Bulma</a>.
-      </p>
-    </div>
-  </footer>
 </html>
