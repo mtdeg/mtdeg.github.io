@@ -194,20 +194,24 @@
             target.classList.toggle('is-active');
           });
         });
+    
+        fetchSlidesList();
       });
-
-      function readAndGoto() {
-        const code = document.getElementById('input').value.trim();
+    
+      function readAndGoto(code = null) {
+        if (!code) {
+          code = document.getElementById('input').value.trim();
+        }
         if (code) {
           window.location.href = 'slides.html?file=' + encodeURIComponent(code);
         }
       }
-      
+    
       async function fetchSlidesList() {
         try {
           const response = await fetch('https://nejen-matematika.github.io/slides-md/list.json');
           const files = await response.json();
-
+    
           const panels = {
             'ss-1-panel': 'ss-1-search',
             'ss-2-panel': 'ss-2-search',
@@ -218,13 +222,13 @@
             'matur-sk-panel': 'matur-sk-search',
             'sem-panel': 'sem-search'
           };
-
+    
           for (const [panelId, inputId] of Object.entries(panels)) {
             const panel = document.getElementById(panelId);
             const input = document.getElementById(inputId);
             const prefix = panelId.replace('-panel', '');
             const relevant = files.filter(name => name.startsWith(`mat-${prefix}`));
-
+    
             if (relevant.length === 0) {
               const empty = document.createElement('div');
               empty.className = 'panel-block';
@@ -232,16 +236,16 @@
               panel.appendChild(empty);
               continue;
             }
-
+    
             relevant.forEach(file => {
               const name = file.replace('.md', '');
               const block = document.createElement('div');
-              block.className = 'panel-block';
+              block.className = 'panel-block is-clickable';
               block.textContent = name;
-              block.onclick = () => window.location.href = `https://nejen-matematika.github.io/slides-md/${name}.html`;
+              block.onclick = () => readAndGoto(name);
               panel.appendChild(block);
             });
-
+    
             input.addEventListener('input', e => {
               const term = e.target.value.toLowerCase();
               panel.querySelectorAll('.panel-block').forEach(item => {
@@ -256,8 +260,6 @@
           console.error('Chyba při načítání souborů:', e);
         }
       }
-
-      document.addEventListener('DOMContentLoaded', fetchSlidesList);
     </script>
   </body>
 </html>
