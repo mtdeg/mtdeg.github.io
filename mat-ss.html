@@ -14,23 +14,29 @@
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
   </head>
   <body>
-    <!-- Navbar -->
-    <nav class="navbar is-info is-fixed-top" role="navigation" aria-label="main navigation">
+    <!-- Navigace -->
+    <nav class="navbar is-spaced is-fixed-top" role="navigation" aria-label="main navigation">
       <div class="navbar-brand">
-        <a class="navbar-item" href="index.html">
-          <strong>(nejen) matematika</strong>
+        <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasic">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
         </a>
-        <span class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasic">
-          <span></span><span></span><span></span>
-        </span>
       </div>
       <div id="navbarBasic" class="navbar-menu">
         <div class="navbar-start">
           <a class="navbar-item" href="index.html">Hlavní strana</a>
-          <a class="navbar-item" href="mat-zs.html">Matematika na ZŠ</a>
-          <a class="navbar-item" href="mat-ss.html">Matematika na SŠ</a>
-          <a class="navbar-item" href="mat-ost.html">Ostatní z matematiky</a>
-          <a class="navbar-item" href="mat-uc.html">Učebnice</a>
+
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a class="navbar-link">Matematika</a>
+            <div class="navbar-dropdown is-boxed">
+              <a class="navbar-item" href="mat-zs.html">Matematika na základní škole</a>
+              <a class="navbar-item" href="mat-ss.html">Matematika na střední škole</a>
+              <a class="navbar-item" href="mat-ost.html">Ostatní z matematiky</a>
+              <a class="navbar-item" href="mat-uc.html">Učebnice do matematiky</a>
+            </div>
+          </div>
+
           <a class="navbar-item" href="ostatni.html">Ostatní předměty</a>
         </div>
       </div>
@@ -56,7 +62,7 @@
         <div class="columns is-multiline">
           <div class="column is-half">
             <div class="box">
-              <nav class="panel is-info" id="ss-1-panel" style="max-height: 320px; overflow-y: auto;">
+              <nav class="panel" id="ss-1-panel" style="max-height: 320px; overflow-y: auto;">
                 <p class="panel-heading">1. ročník SŠ</p>
                 <div class="panel-block">
                   <input id="ss-1-search" class="input" type="text" placeholder="Vyhledat…">
@@ -67,7 +73,7 @@
 
           <div class="column is-half">
             <div class="box">
-              <nav class="panel is-info" id="ss-2-panel" style="max-height: 320px; overflow-y: auto;">
+              <nav class="panel" id="ss-2-panel" style="max-height: 320px; overflow-y: auto;">
                 <p class="panel-heading">2. ročník SŠ</p>
                 <div class="panel-block">
                   <input id="ss-2-search" class="input" type="text" placeholder="Vyhledat…">
@@ -78,7 +84,7 @@
 
           <div class="column is-half">
             <div class="box">
-              <nav class="panel is-info" id="ss-3-panel" style="max-height: 320px; overflow-y: auto;">
+              <nav class="panel" id="ss-3-panel" style="max-height: 320px; overflow-y: auto;">
                 <p class="panel-heading">3. ročník SŠ</p>
                 <div class="panel-block">
                   <input id="ss-3-search" class="input" type="text" placeholder="Vyhledat…">
@@ -89,7 +95,7 @@
 
           <div class="column is-half">
             <div class="box">
-              <nav class="panel is-info" id="ss-4-panel" style="max-height: 320px; overflow-y: auto;">
+              <nav class="panel" id="ss-4-panel" style="max-height: 320px; overflow-y: auto;">
                 <p class="panel-heading">4. ročník SŠ</p>
                 <div class="panel-block">
                   <input id="ss-4-search" class="input" type="text" placeholder="Vyhledat…">
@@ -100,7 +106,7 @@
 
           <div class="column is-half">
             <div class="box">
-              <nav class="panel is-info" id="matur-st-panel" style="max-height: 320px; overflow-y: auto;">
+              <nav class="panel" id="matur-st-panel" style="max-height: 320px; overflow-y: auto;">
                 <p class="panel-heading">Příprava na státní maturitu</p>
                 <div class="panel-block">
                   <input id="matur-st-search" class="input" type="text" placeholder="Vyhledat…">
@@ -111,7 +117,7 @@
 
           <div class="column is-half">
             <div class="box">
-              <nav class="panel is-info" id="matur-pl-panel" style="max-height: 320px; overflow-y: auto;">
+              <nav class="panel" id="matur-pl-panel" style="max-height: 320px; overflow-y: auto;">
                 <p class="panel-heading">Příprava na státní maturitu - matematika +</p>
                 <div class="panel-block">
                   <input id="matur-pl-search" class="input" type="text" placeholder="Vyhledat…">
@@ -122,7 +128,7 @@
 
           <div class="column is-half">
             <div class="box">
-              <nav class="panel is-info" id="matur-sk-panel" style="max-height: 320px; overflow-y: auto;">
+              <nav class="panel" id="matur-sk-panel" style="max-height: 320px; overflow-y: auto;">
                 <p class="panel-heading">Příprava na školní maturitu</p>
                 <div class="panel-block">
                   <input id="matur-sk-search" class="input" type="text" placeholder="Vyhledat…">
@@ -133,7 +139,7 @@
 
           <div class="column is-half">
             <div class="box">
-              <nav class="panel is-info" id="sem-panel" style="max-height: 320px; overflow-y: auto;">
+              <nav class="panel" id="sem-panel" style="max-height: 320px; overflow-y: auto;">
                 <p class="panel-heading">Semináře</p>
                 <div class="panel-block">
                   <input id="sem-search" class="input" type="text" placeholder="Vyhledat…">
